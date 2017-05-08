@@ -5,7 +5,7 @@ import {
 
 describe("AnonymousAccessor", ()=> {
 
-  it("should override buildSharedQuery", ()=> {
+  test("should override buildSharedQuery", ()=> {
     let accessor = new AnonymousAccessor((query)=> {
       return query.setSize(11)
     })
@@ -13,7 +13,7 @@ describe("AnonymousAccessor", ()=> {
     expect(query.getSize()).toBe(11)
   })
 
-  it("should handle null fn", ()=> {
+  test("should handle null fn", ()=> {
     let accessor = new AnonymousAccessor(null)
     let query = new ImmutableQuery()
     expect(accessor.buildSharedQuery(query)).toBe(query)

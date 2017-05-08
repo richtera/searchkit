@@ -5,14 +5,18 @@ import {CheckboxFilter} from "./CheckboxFilter";
 import {SearchkitManager, Utils} from "../../../../core";
 import {Toggle, ItemComponent} from "../../../ui";
 import { TermQuery } from "../../../../core";
+import * as ReactTestRenderer from 'react-test-renderer'
 
 const bem = require("bem-cn");
 import * as _ from "lodash"
-import * as sinon from "sinon";
 
 describe("CheckboxFilter tests", () => {
-  this.createWrapper = (component) => {
-    this.wrapper = mount(component)
+  this.createWrapper = (isEnzyme) => {
+    const c = (<CheckboxFilter
+      id="test id" title="test title" label="test label"
+      searchkit={this.searchkit}
+      filter={TermQuery("test-field", "test-value")} />)
+    this.wrapper = isEnzyme ? mount(c) : ReactTestRenderer.create(c)
 
     this.searchkit.setResults({
       hits:{
@@ -39,35 +43,15 @@ describe("CheckboxFilter tests", () => {
       }[key]
     }
 
-    this.createWrapper(
-      <CheckboxFilter
-        id="test id" title="test title" label="test label"
-        searchkit={this.searchkit}
-        filter={TermQuery("test-field", "test-value")} />
-    )
   });
 
   it('renders correctly', () => {
-    let output = jsxToHTML(
-      <div className="sk-panel filter--test id">
-        <div className="sk-panel__header">test title</div>
-        <div className="sk-panel__content">
-          <div data-qa="options" className="sk-item-list">
-            <div className="sk-item-list-option sk-item-list__item" data-qa="option" data-key="test label">
-              <input type="checkbox" data-qa="checkbox" readOnly={true} className="sk-item-list-option__checkbox" value="on"/>
-              <div data-qa="label" className="sk-item-list-option__text">test label</div>
-              <div data-qa="count" className="sk-item-list-option__count">50</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-
-    expect(this.wrapper.html()).toEqual(output)
-
+    this.createWrapper(false)
+    expect(this.wrapper).toMatchSnapshot()
   });
 
   it('clicks options', () => {
+    this.createWrapper(true)
     expect(this.accessor.state.getValue()).toEqual(null)
     let option = this.wrapper.find(".sk-item-list").children().at(0)
     fastClick(option)
@@ -78,6 +62,7 @@ describe("CheckboxFilter tests", () => {
   })
 
   it("should configure accessor correctly", () => {
+    this.createWrapper(true)
     expect(this.accessor.key).toBe("test id")
     let options = this.accessor.options
 
@@ -91,6 +76,7 @@ describe("CheckboxFilter tests", () => {
   })
 
   it("can disable", () => {
+    this.createWrapper(true)
     expect(hasClass(this.wrapper.find(".sk-panel"), "is-disabled")).toBe(false)
     this.searchkit.setResults({
       hits:{ total:0 },

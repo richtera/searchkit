@@ -23,7 +23,7 @@ require("../../../../../theming/theme.scss")
 const TaxonomyHitsItem = (props)=> {
   const {result, bemBlocks} = props
   return (
-    <div className={bemBlocks.item().mix(bemBlocks.container("item"))}>
+    <div className={bemBlocks.item().mix(bemBlocks.container("item")).toString()}>
       {result._source.path}
     </div>
   )

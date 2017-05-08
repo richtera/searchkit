@@ -2,7 +2,7 @@ import {
   RangeQuery
 } from "../../../../../"
 
-it("RangeQuery", ()=> {
+test("RangeQuery", ()=> {
   expect(RangeQuery("prices", {gte:0, lt:10})).toEqual({
     range:{
       prices:{

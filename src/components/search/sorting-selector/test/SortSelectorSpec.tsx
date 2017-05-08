@@ -3,8 +3,8 @@ import {mount} from "enzyme";
 import {SortingSelector} from "../src/SortingSelector";
 import {SearchkitManager } from "../../../../core";
 import {Toggle} from "../../../ui";
+import * as ReactTestRenderer from 'react-test-renderer'
 const bem = require("bem-cn");
-import * as sinon from "sinon";
 import * as _ from "lodash"
 import {
   fastClick, hasClass, jsxToHTML, printPrettyHtml
@@ -15,17 +15,17 @@ describe("SortingSelector tests", () => {
   beforeEach(()=> {
     this.searchkit = SearchkitManager.mock()
     spyOn(this.searchkit, "performSearch")
-    this.setWrapper = () => {
-      this.wrapper = mount(
+    this.setWrapper = (isEnzyme) => {
+      const c = (
         <SortingSelector searchkit={this.searchkit} options={[
           {label:"Relevance"},
           {label:"Latest Releases", field:"released", order:"desc"},
           {label:"Earliest Releases", field:"released", order:"asc", key:"earliest"}
         ]} translations={{"Relevance":"Relevance translated"}}/>
       )
+      this.wrapper = isEnzyme ? mount(c) : ReactTestRenderer.create(c)
+      this.accessor = this.searchkit.accessors.accessors[0]
     }
-    this.setWrapper()
-    this.accessor = this.searchkit.accessors.accessors[0]
     this.setResults = ()=> {
       this.searchkit.setResults({
         hits:{
@@ -36,65 +36,35 @@ describe("SortingSelector tests", () => {
     }
   })
 
-  it("is disabled when no results", ()=> {
-    expect(this.wrapper.children().length).toBe(1)
-    expect(this.wrapper.html()).toEqual(jsxToHTML(
-      <div className="sk-select is-disabled">
-        <select>
-          <option value="none">Relevance translated</option>
-          <option value="released_desc">Latest Releases</option>
-          <option value="earliest">Earliest Releases</option>
-        </select>
-      </div>
-    ))
+  test("is disabled when no results", ()=> {
+    this.setWrapper()
+    expect(this.wrapper).toMatchSnapshot()
   })
 
-  it("renders with results", ()=> {
+  test("renders with results", ()=> {
+    this.setWrapper()
     this.setResults()
-    expect(this.wrapper.children().length).toBe(1)
-    expect(this.wrapper.html()).toEqual(jsxToHTML(
-      <div className="sk-select">
-        <select>
-          <option value="none">Relevance translated</option>
-          <option value="released_desc">Latest Releases</option>
-          <option value="earliest">Earliest Releases</option>
-        </select>
-      </div>
-    ))
+    expect(this.wrapper).toMatchSnapshot()
   })
 
-  it("renders with selected value", ()=> {
+  test("renders with selected value", ()=> {
+    this.setWrapper()
     this.accessor.state = this.accessor.state.setValue("released_desc")
     this.setResults()
     this.setWrapper()
-
-    expect(this.wrapper.html()).toEqual(jsxToHTML(
-      <div className="sk-select">
-        <select onChange={_.identity}>
-          <option value="none">Relevance translated</option>
-          <option value="released_desc">Latest Releases</option>
-          <option value="earliest">Earliest Releases</option>
-        </select>
-      </div>
-    ))
+    expect(this.wrapper).toMatchSnapshot()
   })
 
-  it("renders with defaultOption", ()=> {
+  test("renders with defaultOption", ()=> {
+    this.setWrapper()
     this.accessor.options.options[2].defaultOption = true
     this.setResults()
     this.setWrapper()
-    expect(this.wrapper.html()).toEqual(jsxToHTML(
-      <div className="sk-select">
-        <select onChange={_.identity}>
-          <option value="none">Relevance translated</option>
-          <option value="released_desc">Latest Releases</option>
-          <option value="earliest">Earliest Releases</option>
-        </select>
-      </div>
-    ))
+    expect(this.wrapper).toMatchSnapshot()
   })
 
-  it("select new sort option", ()=> {
+  test("select new sort option", ()=> {
+    this.setWrapper(true)
     this.accessor.state = this.accessor.state.setValue("released_desc")
     this.setResults()
     let earlyOption = this.wrapper.find("select").children().at(2)
@@ -103,26 +73,19 @@ describe("SortingSelector tests", () => {
     expect(this.searchkit.performSearch).toHaveBeenCalled()
   })
 
-  it("handle prop reload without breaking computed keys", ()=> {
+  test("handle prop reload without breaking computed keys", ()=> {
+    this.setWrapper(true)
     this.wrapper.setProps({options:[
       {label:"Relevance"},
       {label:"Latest Releases", field:"released", order:"desc"},
       {label:"Earliest Releases", field:"released", order:"asc", key:"earliest"}
     ]})
     this.setResults()
-    expect(this.wrapper.html()).toEqual(jsxToHTML(
-      <div className="sk-select">
-        <select>
-          <option value="none">Relevance translated</option>
-          <option value="released_desc">Latest Releases</option>
-          <option value="earliest">Earliest Releases</option>
-        </select>
-      </div>
-    ))
+    expect(this.wrapper.find('.sk-select')).toMatchSnapshot()
   })
 
-  it("custom mod, className, listComponent", ()=> {
-    this.wrapper = mount(
+  test("custom mod, className, listComponent", ()=> {
+    this.wrapper = ReactTestRenderer.create(
       <SortingSelector searchkit={this.searchkit}
         mod="my-select" className="custom-class" listComponent={Toggle} options={[
         {label:"Relevance"},
@@ -130,19 +93,7 @@ describe("SortingSelector tests", () => {
         {label:"Earliest Releases", field:"released", order:"asc", key:"earliest"}
       ]}/>
     )
-    expect(this.wrapper.html()).toEqual(jsxToHTML(
-      <div data-qa="options" className="my-select custom-class is-disabled">
-        <div className="my-select-option my-select__item is-active" data-qa="option" data-key="none">
-          <div data-qa="label" className="my-select-option__text">Relevance</div>
-        </div>
-        <div className="my-select-option my-select__item" data-qa="option" data-key="released_desc">
-          <div data-qa="label" className="my-select-option__text">Latest Releases</div>
-        </div>
-        <div className="my-select-option my-select__item" data-qa="option" data-key="earliest">
-          <div data-qa="label" className="my-select-option__text">Earliest Releases</div>
-        </div>
-      </div>
-    ))
+    expect(this.wrapper).toMatchSnapshot()
 
   })
 

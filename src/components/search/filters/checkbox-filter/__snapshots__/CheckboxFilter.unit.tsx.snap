@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckboxFilter tests renders correctly 1`] = `
+<div
+  className="sk-panel filter--test id"
+>
+  <div
+    className="sk-panel__header"
+  >
+    test title
+  </div>
+  <div
+    className="sk-panel__content"
+  >
+    <div
+      className="sk-item-list"
+      data-qa="options"
+    >
+      <div
+        className="sk-item-list-option sk-item-list__item"
+        data-key="test label"
+        data-qa="option"
+        onClick={[Function]}
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={undefined}
+      >
+        <input
+          checked={false}
+          className="sk-item-list-option__checkbox"
+          data-qa="checkbox"
+          readOnly={true}
+          type="checkbox"
+        />
+        <div
+          className="sk-item-list-option__text"
+          data-qa="label"
+        >
+          test label
+        </div>
+        <div
+          className="sk-item-list-option__count"
+          data-qa="count"
+        >
+          50
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

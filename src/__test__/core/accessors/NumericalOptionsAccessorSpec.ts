@@ -32,7 +32,7 @@ describe("NumericOptionsAccessor", ()=> {
     }
   })
 
-  it("constructor()", ()=> {
+  test("constructor()", ()=> {
     expect(this.accessor.key).toBe("categories")
     expect(this.accessor.options.options).toEqual([
       {title: 'All', key: 'all'},
@@ -42,7 +42,7 @@ describe("NumericOptionsAccessor", ()=> {
     ])
   })
 
-  it("getBuckets()", ()=> {
+  test("getBuckets()", ()=> {
     this.accessor.results = {
       aggregations:{
         "9999":{
@@ -61,11 +61,11 @@ describe("NumericOptionsAccessor", ()=> {
       .toEqual([1,2,3])
   })
 
-  it("getDefaultOption()", ()=> {
+  test("getDefaultOption()", ()=> {
     expect(this.accessor.getDefaultOption()).toEqual(this.options.options[0])
   })
 
-  it("getSelectedOptions(), getSelectedOrDefaultOptions()", ()=> {
+  test("getSelectedOptions(), getSelectedOrDefaultOptions()", ()=> {
     expect(this.accessor.getSelectedOptions()).toEqual([])
     expect(this.accessor.getSelectedOrDefaultOptions())
       .toEqual([this.options.options[0]])
@@ -83,14 +83,14 @@ describe("NumericOptionsAccessor", ()=> {
 
   })
 
-  it("setOptions()", ()=> {
+  test("setOptions()", ()=> {
     expect(this.accessor.state.getValue()).toEqual([])
     this.accessor.setOptions(["Affordable", "Pricey"])
     expect(this.accessor.state.getValue()).toEqual(["11_21", "21_101"])
     expect(this.searchkit.performSearch).toHaveBeenCalled()
   })
 
-  it("setOption(), single key", ()=> {
+  test("setOption(), single key", ()=> {
     expect(this.accessor.state.getValue()).toEqual([])
     this.accessor.setOptions(["Affordable"])
     expect(this.accessor.state.getValue()).toEqual(["11_21"])
@@ -101,19 +101,19 @@ describe("NumericOptionsAccessor", ()=> {
 
   describe("toggleOption()", ()=> {
 
-    it("no option found", ()=> {
+    test("no option found", ()=> {
       this.accessor.toggleOption("none")
       expect(this.searchkit.performSearch).not.toHaveBeenCalled()
       expect(this.accessor.state.getValue()).toEqual([])
     })
 
-    it("defaultOption", ()=> {
+    test("defaultOption", ()=> {
       this.accessor.toggleOption("All")
       expect(this.searchkit.performSearch).toHaveBeenCalled()
       expect(this.accessor.state.getValue()).toEqual([])
     })
 
-    it("multiple select", ()=> {
+    test("multiple select", ()=> {
       this.options.multiselect = true
       this.accessor.state = new ArrayState(["21_101"])
       this.accessor.toggleOption("Affordable")
@@ -121,7 +121,7 @@ describe("NumericOptionsAccessor", ()=> {
       expect(this.accessor.state.getValue()).toEqual(["21_101", "11_21"])
     })
 
-    it("single select", ()=> {
+    test("single select", ()=> {
       this.options.multiselect = false
       this.accessor.state = new ArrayState(["21_101"])
       this.accessor.toggleOption("Affordable")
@@ -130,7 +130,7 @@ describe("NumericOptionsAccessor", ()=> {
     })
   })
 
-  it("getRanges()", ()=> {
+  test("getRanges()", ()=> {
     expect(this.accessor.getRanges()).toEqual([
       {key: 'All'},
       {key: 'Cheap', from: 1, to: 11},
@@ -139,7 +139,7 @@ describe("NumericOptionsAccessor", ()=> {
     ])
   })
 
-  it("buildSharedQuery()", ()=> {
+  test("buildSharedQuery()", ()=> {
     this.accessor.state = new ArrayState(["11_21", "21_101"])
     let query = this.accessor.buildSharedQuery(this.query)
     let expected = BoolMust([
@@ -166,7 +166,7 @@ describe("NumericOptionsAccessor", ()=> {
   })
 
 
-  it("buildOwnQuery()", ()=> {
+  test("buildOwnQuery()", ()=> {
     this.query = this.query.addFilter("other", BoolShould(["foo"]))
     let query = this.accessor.buildSharedQuery(this.query)
     query = this.accessor.buildOwnQuery(query)
@@ -227,7 +227,7 @@ describe("NumericOptionsAccessor", ()=> {
       this.accessor.uuid = "9999"
     })
 
-    it("buildSharedQuery()", ()=> {
+    test("buildSharedQuery()", ()=> {
       this.accessor.state = new ArrayState(["11_21", "21_101"])
       let query = this.accessor.buildSharedQuery(this.query)
       let expected = BoolMust([
@@ -239,7 +239,7 @@ describe("NumericOptionsAccessor", ()=> {
       expect(query.query.post_filter).toEqual(expected)
     })
 
-    it("buildOwnQuery()", ()=> {
+    test("buildOwnQuery()", ()=> {
       this.query = this.query.addFilter("other", BoolShould(["foo"]))
       let query = this.accessor.buildSharedQuery(this.query)
       query = this.accessor.buildOwnQuery(query)
@@ -278,7 +278,7 @@ describe("NumericOptionsAccessor", ()=> {
       )
     })
 
-    it("getBuckets()", ()=> {
+    test("getBuckets()", ()=> {
       this.accessor.results = {
         aggregations:{
           "9999":{

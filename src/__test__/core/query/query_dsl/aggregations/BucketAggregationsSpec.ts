@@ -20,7 +20,7 @@ describe("BucketAggregations", ()=> {
     }
   })
 
-  it("TermsBucket", ()=> {
+  test("TermsBucket", ()=> {
     this.aggs = TermsBucket(
       this.aggsKey, "genres",
       {size:10, min_doc_count:0, include:"bmw", exclude:"audi"}, this.childBucket)
@@ -32,7 +32,7 @@ describe("BucketAggregations", ()=> {
       }
     })
   })
-  it("RangeBucket", ()=> {
+  test("RangeBucket", ()=> {
     this.aggs = RangeBucket(
       this.aggsKey, "prices",
       [1,2,3], this.childBucket)
@@ -43,7 +43,7 @@ describe("BucketAggregations", ()=> {
     })
   })
 
-  it("ChildrenBucket", ()=> {
+  test("ChildrenBucket", ()=> {
     this.aggs = ChildrenBucket(
       this.aggsKey, "tags",
       this.childBucket
@@ -51,7 +51,7 @@ describe("BucketAggregations", ()=> {
     this.expectAggs({children:{type:"tags"}})
   })
 
-  it("FilterBucket", ()=> {
+  test("FilterBucket", ()=> {
     this.aggs = FilterBucket(
       this.aggsKey, "somefilter",
       this.childBucket
@@ -59,7 +59,7 @@ describe("BucketAggregations", ()=> {
     this.expectAggs({filter:"somefilter"})
   })
 
-  it("NestedBucket", ()=> {
+  test("NestedBucket", ()=> {
     this.aggs = NestedBucket(
       this.aggsKey, "tags",
       this.childBucket
@@ -67,7 +67,7 @@ describe("BucketAggregations", ()=> {
     this.expectAggs({nested:{path:"tags"}})
   })
 
-  it("SignificantTermsBucket", ()=> {
+  test("SignificantTermsBucket", ()=> {
     expect(SignificantTermsBucket(this.aggsKey, "crime_type")).toEqual({
       [this.aggsKey]:{
         significant_terms:{field:"crime_type"}
@@ -82,7 +82,7 @@ describe("BucketAggregations", ()=> {
       significant_terms:{field:"crime_type", size:10}})
   })
 
-  it("GeohashBucket", ()=> {
+  test("GeohashBucket", ()=> {
     this.aggs = GeohashBucket(
       this.aggsKey, "location",
       {precision:5},
@@ -91,7 +91,7 @@ describe("BucketAggregations", ()=> {
     this.expectAggs({geohash_grid:{field:"location", precision:5}})
   })
 
-  it("HistogramBucket", ()=> {
+  test("HistogramBucket", ()=> {
     expect(HistogramBucket(this.aggsKey, "price")).toEqual({
       [this.aggsKey]:{
         histogram:{field:"price"}

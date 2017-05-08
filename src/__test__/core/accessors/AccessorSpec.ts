@@ -14,13 +14,13 @@ describe("Accessor", ()=> {
     this.query = new ImmutableQuery()
   })
 
-  it("constructor()", ()=> {
+  test("constructor()", ()=> {
     expect(this.accessor.active).toBe(true)
     expect(this.accessor.uuid).toBe("some_uuid")
     expect(this.accessor.refCount).toBe(0)
   })
 
-  it("incrementRef(), decrementRef()", ()=> {
+  test("incrementRef(), decrementRef()", ()=> {
     this.accessor.incrementRef()
     expect(this.accessor.refCount).toBe(1)
     this.accessor.decrementRef()
@@ -28,29 +28,29 @@ describe("Accessor", ()=> {
   })
 
 
-  it("setActive()", ()=> {
+  test("setActive()", ()=> {
     expect(this.accessor.setActive(false).active)
       .toBe(false)
   })
 
-  it("setSearchkitManager()", ()=> {
+  test("setSearchkitManager()", ()=> {
     this.accessor.setSearchkitManager(this.searchkit)
     expect(this.accessor.searchkit).toBe(this.searchkit)
   })
 
-  it("translate()", ()=> {
+  test("translate()", ()=> {
     expect(this.accessor.translate("foo")).toBe("foo")
     this.searchkit.translate = key => key + "_translated"
     this.accessor.setSearchkitManager(this.searchkit)
     expect(this.accessor.translate("foo")).toBe("foo_translated")
   })
 
-  it("set + get results", ()=> {
+  test("set + get results", ()=> {
     this.accessor.setResults("lots of hits")
     expect(this.accessor.getResults()).toBe("lots of hits")
   })
 
-  it("getAggregations()", ()=> {
+  test("getAggregations()", ()=> {
     expect(this.accessor.getAggregations(["tags", "buckets"], []))
       .toEqual([])
 
@@ -69,7 +69,7 @@ describe("Accessor", ()=> {
 
   })
 
-  it("beforeBuildQuery()", ()=> {
+  test("beforeBuildQuery()", ()=> {
     expect(this.accessor.beforeBuildQuery).toEqual(
       jasmine.any(Function)
     )
@@ -77,12 +77,12 @@ describe("Accessor", ()=> {
 
   })
 
-  it("buildSharedQuery()", ()=> {
+  test("buildSharedQuery()", ()=> {
     expect(this.accessor.buildSharedQuery(this.query))
       .toBe(this.query)
   })
 
-  it("buildOwnQuery()", ()=> {
+  test("buildOwnQuery()", ()=> {
     expect(this.accessor.buildOwnQuery(this.query))
       .toBe(this.query)
   })

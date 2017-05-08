@@ -15,7 +15,7 @@ describe("QueryAccessor", ()=> {
       })
     })
 
-    it("buildSharedQuery()", ()=> {
+    test("buildSharedQuery()", ()=> {
       let query = new ImmutableQuery()
       this.accessor.state = new ValueState("some query")
       query = this.accessor.buildSharedQuery(query)
@@ -33,7 +33,7 @@ describe("QueryAccessor", ()=> {
       expect(query.getQueryString()).toBe("some query")
     })
 
-    it("buildSharedQuery() - empty query", ()=> {
+    test("buildSharedQuery() - empty query", ()=> {
       this.accessor.state = new ValueState("")
       let query = new ImmutableQuery()
       let newQuery = this.accessor.buildSharedQuery(query)
@@ -43,7 +43,7 @@ describe("QueryAccessor", ()=> {
   })
 
   describe("queryOptions", () => {
-    it("extend options", () => {
+    test("extend options", () => {
       this.accessor = new QueryAccessor("q", {
         queryFields:["_all"],
         queryBuilder:QueryString,
@@ -76,7 +76,7 @@ describe("QueryAccessor", ()=> {
       }
     })
 
-    it("queryFields specified", () => {
+    test("queryFields specified", () => {
 
       this.createAccessor(["title^10", "_all"])
 
@@ -91,7 +91,7 @@ describe("QueryAccessor", ()=> {
 
     })
 
-    it("queryFields not specified", () => {
+    test("queryFields not specified", () => {
 
       this.createAccessor(null)
 
@@ -108,7 +108,7 @@ describe("QueryAccessor", ()=> {
 
   })
 
-  it("prefixQueryFields with options", ()=> {
+  test("prefixQueryFields with options", ()=> {
     this.accessor = new QueryAccessor("q", {
       prefixQueryFields:["title"],
       prefixQueryOptions: {

@@ -1,0 +1,853 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination tests PaginationSelect 1`] = `
+<div
+  className="sk-pagination-select is-numbered"
+>
+  <div
+    className="sk-select"
+  >
+    <select
+      onChange={[Function]}
+      value={1}
+    >
+      <option
+        disabled={undefined}
+        value={1}
+      >
+        1
+      </option>
+      <option
+        disabled={undefined}
+        value={2}
+      >
+        2
+      </option>
+      <option
+        disabled={undefined}
+        value={3}
+      >
+        3
+      </option>
+      <option
+        disabled={undefined}
+        value={4}
+      >
+        4
+      </option>
+    </select>
+  </div>
+</div>
+`;
+
+exports[`Pagination tests rendering both disabled on only one total page 1`] = `
+<div
+  className="sk-pagination-navigation is-numbered"
+>
+  <div
+    className="sk-toggle is-disabled"
+    data-qa="options"
+  >
+    <div
+      className="sk-toggle-option sk-toggle__item is-disabled"
+      data-key="previous"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        Previous Page
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item is-active"
+      data-key={1}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        1
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item is-disabled"
+      data-key="next"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        Next
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Pagination tests rendering handles pageScope prop 1`] = `
+<div
+  className="sk-pagination-navigation is-numbered"
+>
+  <div
+    className="sk-toggle"
+    data-qa="options"
+  >
+    <div
+      className="sk-toggle-option sk-toggle__item is-disabled"
+      data-key="previous"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        Previous Page
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item is-active"
+      data-key={1}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        1
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key={2}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        2
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item is-disabled"
+      data-key="ellipsis-3"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        ...
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key="next"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        Next
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Pagination tests rendering handles showNumbers prop 1`] = `
+<div
+  className="sk-pagination-navigation"
+>
+  <div
+    className="sk-toggle"
+    data-qa="options"
+  >
+    <div
+      className="sk-toggle-option sk-toggle__item is-disabled"
+      data-key="previous"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        Previous Page
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key="next"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        Next
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Pagination tests rendering renders eighth page options 1`] = `
+<div
+  className="sk-pagination-navigation is-numbered"
+>
+  <div
+    className="sk-toggle"
+    data-qa="options"
+  >
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key="previous"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        Previous Page
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key={1}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        1
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item is-disabled"
+      data-key="ellipsis-2"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        ...
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key={5}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        5
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key={6}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        6
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key={7}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        7
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item is-active"
+      data-key={8}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        8
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item is-disabled"
+      data-key="next"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        Next
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Pagination tests rendering renders first page options 1`] = `
+<div
+  className="sk-pagination-navigation is-numbered"
+>
+  <div
+    className="sk-toggle"
+    data-qa="options"
+  >
+    <div
+      className="sk-toggle-option sk-toggle__item is-disabled"
+      data-key="previous"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        Previous Page
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item is-active"
+      data-key={1}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        1
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key={2}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        2
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key={3}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        3
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key={4}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        4
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item is-disabled"
+      data-key="ellipsis-5"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        ...
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key="next"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        Next
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Pagination tests rendering renders no pagination on no results 1`] = `null`;
+
+exports[`Pagination tests rendering renders second page options 1`] = `
+<div
+  className="sk-pagination-navigation is-numbered"
+>
+  <div
+    className="sk-toggle"
+    data-qa="options"
+  >
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key="previous"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        Previous Page
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key={1}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        1
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item is-active"
+      data-key={2}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        2
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key={3}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        3
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key={4}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        4
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key={5}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        5
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item is-disabled"
+      data-key="ellipsis-6"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        ...
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key="next"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        Next
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Pagination tests rendering renders text 1`] = `
+<div
+  className="sk-pagination-navigation is-numbered"
+>
+  <div
+    className="sk-toggle"
+    data-qa="options"
+  >
+    <div
+      className="sk-toggle-option sk-toggle__item is-disabled"
+      data-key="previous"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        Previous Page
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item is-active"
+      data-key={1}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        1
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key={2}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        2
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key={3}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        3
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key={4}
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        4
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item is-disabled"
+      data-key="ellipsis-5"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        ...
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key="next"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        Next
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Pagination tests rendering renders without pages 1`] = `
+<div
+  className="sk-pagination-navigation"
+>
+  <div
+    className="sk-toggle"
+    data-qa="options"
+  >
+    <div
+      className="sk-toggle-option sk-toggle__item is-disabled"
+      data-key="previous"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        Previous Page
+      </div>
+    </div>
+    <div
+      className="sk-toggle-option sk-toggle__item"
+      data-key="next"
+      data-qa="option"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={undefined}
+    >
+      <div
+        className="sk-toggle-option__text"
+        data-qa="label"
+      >
+        Next
+      </div>
+    </div>
+  </div>
+</div>
+`;

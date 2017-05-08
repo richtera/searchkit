@@ -2,7 +2,7 @@ import {
   HasChildQuery
 } from "../../../../../"
 
-it("HasChildQuery", ()=> {
+test("HasChildQuery", ()=> {
   expect(HasChildQuery("tags", "somequery")).toEqual({
     has_child:{
       type:"tags",

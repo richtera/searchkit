@@ -61,6 +61,7 @@ export class TogglePanel extends React.Component<TogglePanelProps, {collapsed: b
       var containerClass = block()
           .mix(className)
           .state({ disabled })
+          .toString()
 
       var titleDiv
       if (collapsable){

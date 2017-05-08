@@ -18,7 +18,8 @@ module.exports = {
     'react/lib/ExecutionEnvironment': true,
     'react/lib/ReactContext': 'window',
     'text-encoding': 'window',
-    'react/addons': true
+    'react/addons': true,
+    'Symbol': () => false
   },
   module: {
     loaders: [

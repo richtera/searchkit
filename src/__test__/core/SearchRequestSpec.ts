@@ -17,7 +17,7 @@ describe("SearchRequest", ()=> {
       this.transport, this.query.getJSON(), this.searchkit)
   })
 
-  it("constructor()", ()=> {
+  test("constructor()", ()=> {
     expect(this.request.active)
       .toBe(true)
     expect(this.request.transport)
@@ -29,7 +29,7 @@ describe("SearchRequest", ()=> {
   })
 
 
-  it("run() - success", (done)=> {
+  test("run() - success", (done)=> {
     spyOn(this.request.transport, "search")
       .and.returnValue(Promise.resolve([
         "r1", "r2", "r2"
@@ -41,22 +41,24 @@ describe("SearchRequest", ()=> {
     })
   })
 
-  it("run() - error", (done)=> {
+  test("run() - error", ()=> {
+    console.error = jest.genMockFn()
+
     let error = new Error("oh no")
     spyOn(this.request.transport, "search")
       .and.returnValue(Promise.reject(error))
     this.request.run().then(()=> {
       expect(this.searchkit.error).toBe(error)
-      done()
+      expect(console.error).toBeCalled()
     })
   })
 
-  it("deactivate()", ()=> {
+  test("deactivate()", ()=> {
     this.request.deactivate()
     expect(this.request.active).toBe(false)
   })
 
-  it("setResponses()", ()=> {
+  test("setResponses()", ()=> {
     this.request.setResults("results")
     expect(this.searchkit.results).toBe("results")
     delete this.searchkit.results
@@ -65,7 +67,7 @@ describe("SearchRequest", ()=> {
     expect(this.searchkit.results).toBe(undefined)
   })
 
-  it("setError()", ()=> {
+  test("setError()", ()=> {
     let error = new Error("oh no")
     this.request.setError(error)
     expect(this.searchkit.error).toBe(error)

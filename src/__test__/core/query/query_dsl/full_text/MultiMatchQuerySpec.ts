@@ -6,13 +6,13 @@ import {
 describe("MultiMatchQuery", ()=> {
 
 
-  it("empty string", ()=> {
+  test("empty string", ()=> {
     expect(MultiMatchQuery("", {
       fields:["title"]
     })).toBe(undefined)
   })
 
-  it("with string + options", ()=> {
+  test("with string + options", ()=> {
     let query = MultiMatchQuery("foo", {
       type:"phrase_prefix",
       fields:["title"]

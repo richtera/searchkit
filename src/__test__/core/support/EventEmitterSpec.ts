@@ -7,11 +7,11 @@ describe("EventEmitter", ()=> {
     this.emitter = new EventEmitter()
   })
 
-  it("constructor()", ()=> {
+  test("constructor()", ()=> {
     expect(this.emitter.listeners).toEqual([])
   })
 
-  it("add, trigger, remove", ()=> {
+  test("add, trigger, remove", ()=> {
     let argsStr = ""
     let fn = (...args)=> {
       argsStr = args.join("")

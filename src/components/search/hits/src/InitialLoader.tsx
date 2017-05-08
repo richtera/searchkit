@@ -18,8 +18,8 @@ export interface InitialViewDisplayProps {
 export class  InitialViewDisplay extends React.Component<InitialViewDisplayProps, any>{
 	render(){
 		return (
-	 		<div className={this.props.bemBlocks.container()}>
-	 			<div data-qa="initial-loading" className={this.props.bemBlocks.container("initial-loading")}></div>
+	 		<div className={this.props.bemBlocks.container().toString()}>
+	 			<div data-qa="initial-loading" className={this.props.bemBlocks.container("initial-loading").toString()}></div>
 	 		</div>
 	 	)
 	}

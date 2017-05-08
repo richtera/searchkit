@@ -12,7 +12,7 @@ describe("NoFiltersHitCountAccessor", ()=> {
     this.accessor = new NoFiltersHitCountAccessor()
   })
 
-  it("getCount()", ()=> {
+  test("getCount()", ()=> {
     this.accessor.results = {
       aggregations:{
         "no_filters_top_hits":{
@@ -26,12 +26,12 @@ describe("NoFiltersHitCountAccessor", ()=> {
     expect(this.accessor.getCount()).toBe(2)
   })
 
-  it("buildOwnQuery() - with no filters", ()=> {
+  test("buildOwnQuery() - with no filters", ()=> {
     let query = new ImmutableQuery()
     expect(this.accessor.buildOwnQuery(query)).toBe(query)
   })
 
-  it("buildOwnQuery()", ()=> {
+  test("buildOwnQuery()", ()=> {
     let query = new ImmutableQuery().addSelectedFilter({
       id:"test", name:"test", value:"val", remove:_.identity
     }).setQueryString("foo")

@@ -66,13 +66,14 @@ export class HierarchicalRefinementFilter extends SearchkitComponent<Hierarchica
 		var className = block().state({
 			selected:isSelected
 		})
+		.toString()
 
 		return (
 			<div key={option.key}>
 				<FastClick handler={this.addFilter.bind(this, level, option)}>
 					<div className={className}>
-						<div className={block("text")}>{this.translate(option.key)}</div>
-						<div className={block("count")}>{countFormatter(option.doc_count)}</div>
+						<div className={block("text").toString()}>{this.translate(option.key)}</div>
+						<div className={block("count").toString()}>{countFormatter(option.doc_count)}</div>
 					</div>
 				</FastClick>
 					{(() => {
@@ -87,7 +88,7 @@ export class HierarchicalRefinementFilter extends SearchkitComponent<Hierarchica
 	renderOptions(level) {
 		let block = this.bemBlocks.container;
 		return (
-			<div className={block("hierarchical-options")}>
+			<div className={block("hierarchical-options").toString()}>
 			{
         map(this.accessor.getBuckets(level), this.renderOption.bind(this, level))
       }
@@ -101,10 +102,11 @@ export class HierarchicalRefinementFilter extends SearchkitComponent<Hierarchica
 		let className =
 			block().mix(`filter--${this.props.id}`)
 				.state({disabled})
+				.toString()
     return (
 			<div data-qa={`filter--${this.props.id}`} className={className}>
-				<div data-qa="title" className={block("header")}>{this.props.title}</div>
-				<div data-qa="options" className={block("root")}>
+				<div data-qa="title" className={block("header").toString()}>{this.props.title}</div>
+				<div data-qa="options" className={block("root").toString()}>
 					{this.renderOptions(0)}
 				</div>
 			</div>

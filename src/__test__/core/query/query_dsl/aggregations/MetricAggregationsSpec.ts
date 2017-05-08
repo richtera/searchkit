@@ -16,27 +16,27 @@ describe("MetricAggregations", ()=> {
     }
   })
 
-  it("CardinalityMetric", ()=> {
+  test("CardinalityMetric", ()=> {
     this.testFieldMetric( CardinalityMetric, "cardinality" )
   })
 
-  it("MinMetric", ()=> {
+  test("MinMetric", ()=> {
     this.testFieldMetric( MinMetric, "min" )
   })
 
-  it("MaxMetric", ()=> {
+  test("MaxMetric", ()=> {
     this.testFieldMetric( MaxMetric, "max" )
   })
 
-  it("AvgMetric", ()=> {
+  test("AvgMetric", ()=> {
     this.testFieldMetric( AvgMetric, "avg" )
   })
 
-  it("SumMetric", ()=> {
+  test("SumMetric", ()=> {
     this.testFieldMetric( SumMetric, "sum" )
   })
 
-  it("TopHitsMetric", ()=> {
+  test("TopHitsMetric", ()=> {
     expect(TopHitsMetric("sometophits", {
       size:1, _source:false
     })).toEqual({
@@ -49,7 +49,7 @@ describe("MetricAggregations", ()=> {
 
   })
 
-  it("GeoBoundsMetric", ()=> {
+  test("GeoBoundsMetric", ()=> {
     expect(GeoBoundsMetric("bounds", "location"))
       .toEqual({
         bounds:{

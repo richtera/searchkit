@@ -25,13 +25,13 @@ describe("SearchkitProvider", ()=> {
     )
   })
 
-  it("searchkit provider should work correctly", ()=> {
+  test("searchkit provider should work correctly", ()=> {
     expect(this.wrapper.html()).toBe("<h1>Hello</h1>")
     expect(this.wrapper.node.props.searchkit)
       .toBe(this.searchkit)
   })
 
-  it("should call setupListeners()", ()=> {
+  test("should call setupListeners()", ()=> {
     spyOn(this.searchkit, "setupListeners")
     expect(this.searchkit.setupListeners).not.toHaveBeenCalled()
     this.wrapper.node.componentWillMount()

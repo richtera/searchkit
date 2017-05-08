@@ -12,7 +12,7 @@ describe("ResetSearchAccessor", ()=> {
     this.query = new ImmutableQuery()
   })
 
-  it("constructor()", ()=> {
+  test("constructor()", ()=> {
     expect(this.accessor.options).toEqual({
       query:true, filter:true, pagination:true
     })
@@ -22,7 +22,7 @@ describe("ResetSearchAccessor", ()=> {
     })
   })
 
-  it("canReset()", ()=> {
+  test("canReset()", ()=> {
     let options = {query:true, filter:true, pagination:true}
     this.accessor.options = options
     this.searchkit.query = new ImmutableQuery()
@@ -43,7 +43,7 @@ describe("ResetSearchAccessor", ()=> {
     expect(this.accessor.canReset()).toBe(false)
   })
 
-  it("performReset()", ()=> {
+  test("performReset()", ()=> {
     let queryAccessor = this.searchkit.getQueryAccessor()
     spyOn(queryAccessor, "resetState")
     let filterAccessor1 = new FilterBasedAccessor("f1")

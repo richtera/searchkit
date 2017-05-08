@@ -35,7 +35,7 @@ describe("Hits component", () => {
 
     });
 
-    it("initalize accessors correctly", ()=> {
+    test("initalize accessors correctly", ()=> {
       expect(this.pageSizeAccessor.defaultSize).toBe(10)
       expect(this.customHighlightAccessor.highlightRequest).toEqual({ "fields": {} })
       expect(this.highlightAccessor.highlightFields)
@@ -45,7 +45,7 @@ describe("Hits component", () => {
       expect(this.sourceFilterAccessor.source).toEqual(["title"])
     })
 
-    it("does render", () => {
+    test("does render", () => {
       this.searchkit.initialLoading = false
       this.searchkit.setResults({
         hits:{
@@ -63,7 +63,7 @@ describe("Hits component", () => {
       ))
     })
 
-    it("does not render on no hits", () => {
+    test("does not render on no hits", () => {
       this.searchkit.initialLoading = false
       this.searchkit.setResults({
         hits:{
@@ -75,14 +75,14 @@ describe("Hits component", () => {
       expect(this.hasRendered()).toBeFalsy()
     })
 
-    it("no longer renders initial view", () => {
+    test("no longer renders initial view", () => {
       this.searchkit.initialLoading = true
       this.wrapper.update()
       expect(this.hasRendered()).toBeFalsy()
       expect(this.wrapper.find(".sk-hits__initial-loading").length).toBe(0)
     })
 
-    it("custom higher order component", ()=> {
+    test("custom higher order component", ()=> {
       this.searchkit.setResults({
         hits:{
           hits:[{_id:1, title:1},{_id:2,title:2}],
@@ -90,7 +90,7 @@ describe("Hits component", () => {
         }
       })
       let hit = (props)=> {
-        return <div className={props.bemBlocks.item()}>{props.result.title}</div>
+        return <div className={props.bemBlocks.item().toString()}>{props.result.title}</div>
       }
       let wrapper = mount(
         <Hits searchkit={this.searchkit} itemComponent={hit} hitsPerPage={10}/>
@@ -138,7 +138,7 @@ describe("Hits component", () => {
       this.stub.restore()
     })
 
-    it("should scroll to body", () => {
+    test("should scroll to body", () => {
       this.setupTest(true)
 
       expect(this.element.scrollTop).toBe(0)
@@ -146,7 +146,7 @@ describe("Hits component", () => {
 
     })
 
-    it("should scroll to .element", () => {
+    test("should scroll to .element", () => {
       this.setupTest(".element")
 
       expect(this.element.scrollTop).toBe(0)
@@ -154,7 +154,7 @@ describe("Hits component", () => {
 
     })
 
-    it("no scroll", () => {
+    test("no scroll", () => {
       this.setupTest(false)
 
       expect(this.stub.called).toBe(false)
@@ -162,7 +162,7 @@ describe("Hits component", () => {
 
     })
 
-    it("wont scroll on same results", () => {
+    test("wont scroll on same results", () => {
       this.setupTest(true)
 
       expect(this.stub.callCount).toBe(1)
@@ -177,7 +177,7 @@ describe("Hits component", () => {
 
     })
 
-    it("will scroll on new results", () => {
+    test("will scroll on new results", () => {
       this.setupTest(true)
 
       expect(this.stub.callCount).toBe(1)
@@ -194,7 +194,7 @@ describe("Hits component", () => {
 
     })
 
-    it("wont scroll on outside update", () => {
+    test("wont scroll on outside update", () => {
       this.setupTest(true)
 
       expect(this.stub.callCount).toBe(1)

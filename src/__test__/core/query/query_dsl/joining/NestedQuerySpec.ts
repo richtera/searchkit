@@ -2,7 +2,7 @@ import {
   NestedQuery
 } from "../../../../../"
 
-it("NestedQuery", ()=> {
+test("NestedQuery", ()=> {
   expect(NestedQuery("taxonomy", "somequery")).toEqual({
     nested:{
       path:"taxonomy",

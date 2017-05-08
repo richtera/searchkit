@@ -84,7 +84,7 @@ export class GroupedSelectedFilters extends SearchkitComponent<GroupedSelectedFi
     }
 
     return (
-      <div className={this.bemBlocks.container() }>
+      <div className={this.bemBlocks.container().toString()}>
         {map(this.getGroupedFilters(), (filters) =>
           renderComponent(groupComponent, {
             key:filters[0].id,

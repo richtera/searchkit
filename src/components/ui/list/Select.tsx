@@ -47,7 +47,7 @@ export class Select extends React.Component<ListProps, any> {
     }
 
     return (
-      <div className={bemBlocks.container().mix(className).state({ disabled }) }>
+      <div className={bemBlocks.container().mix(className).state({ disabled }).toString()}>
         <select onChange={this.onChange} value={this.getSelectedValue()}>
           {map(items, ({key, label, title, disabled, doc_count}, idx) => {
             var text = translate(label || title || key)

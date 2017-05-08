@@ -22,7 +22,7 @@ export class NoHitsDisplay extends React.Component<NoHitsDisplayProps, any> {
 		if(suggestion){
 			return (
 				<FastClick handler={setSuggestionFn}>
-					<div className={bemBlocks.container("step-action")}>
+					<div className={bemBlocks.container("step-action").toString()}>
 						{translate("NoHits.DidYouMean", {suggestion})}
 					</div>
 				</FastClick>
@@ -37,7 +37,7 @@ export class NoHitsDisplay extends React.Component<NoHitsDisplayProps, any> {
 		if(filtersCount > 0){
 			return (
 				<FastClick handler={resetFiltersFn}>
-					<div className={bemBlocks.container("step-action")}>
+					<div className={bemBlocks.container("step-action").toString()}>
 						{translate("NoHits.SearchWithoutFilters",{query})}
 					</div>
 				</FastClick>
@@ -49,11 +49,11 @@ export class NoHitsDisplay extends React.Component<NoHitsDisplayProps, any> {
   render() {
 		const {bemBlocks, query, suggestion, noResultsLabel} = this.props
 		return (
-			<div data-qa="no-hits" className={bemBlocks.container()}>
-				<div className={bemBlocks.container("info")}>
+			<div data-qa="no-hits" className={bemBlocks.container().toString()}>
+				<div className={bemBlocks.container("info").toString()}>
 					{noResultsLabel}
 				</div>
-				<div className={bemBlocks.container("steps")}>
+				<div className={bemBlocks.container("steps").toString()}>
 					{this.getSuggestionAction() || this.getResetFilterAction()}
 				</div>
 			</div>

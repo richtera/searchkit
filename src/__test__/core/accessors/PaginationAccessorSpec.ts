@@ -10,7 +10,7 @@ describe("PaginationAccessor", ()=> {
     this.accessor = new PaginationAccessor("p")
   })
 
-  it("onStateChange", ()=> {
+  test("onStateChange", ()=> {
     this.accessor.state = this.accessor.state.setValue(2)
 
     this.accessor.onStateChange({p:1})
@@ -22,7 +22,7 @@ describe("PaginationAccessor", ()=> {
     expect(this.accessor.state.getValue()).toBe(null)
   })
 
-  it("buildOwnQuery", ()=> {
+  test("buildOwnQuery", ()=> {
     let query = new ImmutableQuery().setSize(20)
 
     const expectStateFrom = (state, from)=> {
@@ -40,7 +40,7 @@ describe("PaginationAccessor", ()=> {
 
   })
 
-  it("Fix bug in conjunction with PageSizeAccessor", ()=> {
+  test("Fix bug in conjunction with PageSizeAccessor", ()=> {
     let pagination = new PaginationAccessor("p")
    
     pagination.state = pagination.state.setValue(5)

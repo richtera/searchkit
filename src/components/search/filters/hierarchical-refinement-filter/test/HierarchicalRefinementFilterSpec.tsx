@@ -5,7 +5,6 @@ import {HierarchicalRefinementFilter} from "../src/HierarchicalRefinementFilter"
 import {SearchkitManager} from "../../../../../core"
 let bem = require("bem-cn")
 import * as _ from "lodash"
-import * as sinon from "sinon"
 
 describe("Refinement List Filter tests", () => {
 
@@ -60,7 +59,7 @@ describe("Refinement List Filter tests", () => {
 
   });
 
-  it("should configure accessor correctly", ()=> {
+  test("should configure accessor correctly", ()=> {
     expect(this.accessor.key).toBe("testid")
     let options = this.accessor.options
     expect(options).toEqual({
@@ -73,7 +72,7 @@ describe("Refinement List Filter tests", () => {
     })
 
   })
-  it("should render correctly", () => {
+  test("should render correctly", () => {
     this.setResults()
     expect(this.wrapper.html()).toEqual(jsxToHTML(
       <div data-qa="filter--testid" className="sk-hierarchical-refinement-list filter--testid">
@@ -98,7 +97,7 @@ describe("Refinement List Filter tests", () => {
     ))
   })
 
-  it("should render 2nd level and have 1 levels selected correctly", ()=> {
+  test("should render 2nd level and have 1 levels selected correctly", ()=> {
     this.accessor.state = this.accessor.state.setValue([
       ["option2"], ["option2child2"]
     ])
@@ -141,7 +140,7 @@ describe("Refinement List Filter tests", () => {
     ))
   })
 
-  it("handle clicking an option", ()=> {
+  test("handle clicking an option", ()=> {
     this.setResults()
     let option2 = this.wrapper
       .find(".sk-hierarchical-refinement-list__hierarchical-options")
@@ -153,7 +152,7 @@ describe("Refinement List Filter tests", () => {
 
   })
 
-  it("should add disabled state when no results", ()=> {
+  test("should add disabled state when no results", ()=> {
     expect(this.wrapper.html()).toEqual(jsxToHTML(
       <div data-qa="filter--testid" className="sk-hierarchical-refinement-list filter--testid is-disabled">
         <div data-qa="title" className="sk-hierarchical-refinement-list__header">test title</div>

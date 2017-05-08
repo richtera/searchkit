@@ -10,7 +10,7 @@ describe("", ()=> {
     ])
   })
 
-  it("constructor(), computeHighlightedFields()", ()=> {
+  test("constructor(), computeHighlightedFields()", ()=> {
     expect(this.accessor.highlightFields).toEqual({
       fields: {
         title:{},
@@ -19,7 +19,7 @@ describe("", ()=> {
     })
   })
 
-  it("buildOwnQuery()", ()=> {
+  test("buildOwnQuery()", ()=> {
     let query = this.accessor.buildOwnQuery(new ImmutableQuery())
     expect(query.query.highlight).toEqual({
       fields: {

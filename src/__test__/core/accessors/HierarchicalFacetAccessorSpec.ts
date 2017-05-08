@@ -28,7 +28,7 @@ describe("HierarchicalFacetAccessor", ()=> {
 
 
 
-  it("getBuckets()", ()=> {
+  test("getBuckets()", ()=> {
     this.accessor.results = {
       aggregations:{
         categories_id:{
@@ -53,7 +53,7 @@ describe("HierarchicalFacetAccessor", ()=> {
       .toEqual([])
   })
 
-  it("buildSharedQuery", ()=> {
+  test("buildSharedQuery", ()=> {
     this.accessor.state = this.accessor.state
       .add(0, "lvl1val")
       .add(1, "lvl2val")
@@ -99,7 +99,7 @@ describe("HierarchicalFacetAccessor", ()=> {
   })
 
 
-  it("buildOwnQuery()", ()=> {
+  test("buildOwnQuery()", ()=> {
 
     this.accessor.state = this.accessor.state
       .add(0, "lvl1val")

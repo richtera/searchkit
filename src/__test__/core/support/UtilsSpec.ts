@@ -4,41 +4,41 @@ import {Utils} from "../../../"
 describe("Utils", ()=> {
 
 
-  it("guid()", ()=> {
+  test("guid()", ()=> {
     Utils.guidCounter = 0
     expect(Utils.guid()).toBe("1")
     expect(Utils.guid("prefix")).toBe("prefix2")
     expect(Utils.guid("foo")).toBe("foo3")
   })
 
-  it("collapse()", ()=> {
+  test("collapse()", ()=> {
     let times2 = n => n*2
     expect(
       Utils.collapse([times2, times2, times2], 1)
     ).toBe(8)
   })
 
-  it("instanceOf", ()=> {
+  test("instanceOf", ()=> {
     let isRegex = Utils.instanceOf(RegExp)
     expect(isRegex(/s/)).toBe(true)
     expect(isRegex("s")).toBe(false)
   })
 
-  it("interpolate", ()=> {
+  test("interpolate", ()=> {
     expect(Utils.interpolate("hello {message}, Hello {message}{ending}{missing}", {
       message:"World",
       ending:"!"
     })).toEqual("hello World, Hello World!{missing}")
   })
 
-  it("translate() - don't call interpolate", ()=> {
+  test("translate() - don't call interpolate", ()=> {
     let key = "No Results found!"
     spyOn(Utils, "interpolate")
     expect(Utils.translate(key)).toBe(key)
     expect(Utils.interpolate).not.toHaveBeenCalled()
   })
 
-  it("translate() - with interpolations", ()=> {
+  test("translate() - with interpolations", ()=> {
     let key = "{count} Results found!"
     spyOn(Utils, "interpolate").and.callThrough()
     expect(Utils.translate(key, {count:5})).toBe(
@@ -49,7 +49,7 @@ describe("Utils", ()=> {
     )
   })
 
-  it("computeOptionKeys", ()=> {
+  test("computeOptionKeys", ()=> {
     let options = [
       {key:"foo"},
       {a:"a"},

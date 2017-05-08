@@ -17,13 +17,13 @@ describe("ViewOptionsAccessor", ()=> {
 
   })
 
-  it("should set view", () => {
+  test("should set view", () => {
     this.accessor.setView("grid")
     expect(this.accessor.state.getValue()).toBe("grid")
     expect(this.searchkit.performSearch).toHaveBeenCalledWith(false, false)
   })
 
-  it("should set view - default option", () => {
+  test("should set view - default option", () => {
     this.accessor.setView("list")
     expect(this.accessor.state.getValue()).toBe(null)
     expect(this.searchkit.performSearch).toHaveBeenCalledWith(false, false)

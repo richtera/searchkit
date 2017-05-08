@@ -6,9 +6,6 @@ import {
   fastClick, hasClass, jsxToHTML, printPrettyHtml
 } from "../../../../__test__/TestHelpers"
 
-
-import * as sinon from "sinon";
-
 describe("Range Filter tests", () => {
 
   beforeEach(() => {
@@ -59,7 +56,7 @@ describe("Range Filter tests", () => {
   });
 
 
-  it("accessor has correct config", () => {
+  test("accessor has correct config", () => {
     this.createWrapper(true)
     expect(this.accessor.options).toEqual({
       id:"m",
@@ -112,13 +109,13 @@ describe("Range Filter tests", () => {
     ))
   })
 
-  it("renders without histogram", () => {
+  test("renders without histogram", () => {
     this.createWrapper(false)
     expect(this.wrapper.find(".sk-range-histogram").length).toBe(0)
     expect(this.wrapper.find(".sk-range-histogram__bar").length).toBe(0)
   })
 
-  it("handle slider events correctly", ()=> {
+  test("handle slider events correctly", ()=> {
     this.createWrapper(true)
     this.wrapper.node.sliderUpdate({min:30,max:70})
     expect(this.accessor.state.getValue()).toEqual({
@@ -137,17 +134,17 @@ describe("Range Filter tests", () => {
     expect(this.accessor.state.getValue()).toEqual({})
   })
 
-  it("has default interval", ()=> {
+  test("has default interval", ()=> {
     this.createWrapper(true)
     expect(this.accessor.getInterval()).toEqual(5)
   })
 
-  it("handles interval correctly", ()=> {
+  test("handles interval correctly", ()=> {
     this.createWrapper(true, 2)
     expect(this.accessor.getInterval()).toEqual(2)
   })
 
-  it("renders limited range correctly", ()=> {
+  test("renders limited range correctly", ()=> {
     this.createWrapper(true)
     this.wrapper.node.sliderUpdate({min:30,max:70})
     expect(this.wrapper.find(".sk-range-histogram").html()).toEqual(jsxToHTML(

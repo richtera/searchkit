@@ -24,13 +24,13 @@ describe("FacetAccessor", ()=> {
     this.accessor = new FacetAccessor("genre", this.options)
   })
 
-  it("constructor()", ()=> {
+  test("constructor()", ()=> {
     expect(this.accessor.options).toBe(this.options)
     expect(this.accessor.urlKey).toBe("GenreId")
     expect(this.accessor.key).toBe("genre")
   })
 
-  it("getBuckets()", ()=> {
+  test("getBuckets()", ()=> {
     expect(this.accessor.getBuckets()).toEqual([])
     this.accessor.results = {
       aggregations:{
@@ -61,7 +61,7 @@ describe("FacetAccessor", ()=> {
       ])    
   })
 
-  it("getCount()", ()=> {
+  test("getCount()", ()=> {
     expect(this.accessor.getCount()).toEqual(0)
     this.accessor.results = {
       aggregations:{
@@ -76,7 +76,7 @@ describe("FacetAccessor", ()=> {
       .toEqual(99)
   })
 
-  it("getDocCount()", ()=> {
+  test("getDocCount()", ()=> {
     expect(this.accessor.getDocCount()).toEqual(0)
     this.accessor.results = {
       aggregations:{
@@ -93,7 +93,7 @@ describe("FacetAccessor", ()=> {
   })
 
 
-  it("isOrOperator()", ()=> {
+  test("isOrOperator()", ()=> {
     expect(this.accessor.isOrOperator())
       .toBe(true)
     this.options.operator = "AND"
@@ -101,7 +101,7 @@ describe("FacetAccessor", ()=> {
       .toBe(false)
   })
 
-  it("getBoolBuilder()", ()=> {
+  test("getBoolBuilder()", ()=> {
     expect(this.accessor.getBoolBuilder())
       .toBe(BoolShould)
     this.options.operator = "AND"
@@ -111,33 +111,33 @@ describe("FacetAccessor", ()=> {
 
   describe("view more options", () => {
 
-    it("setViewMoreOption", () => {
+    test("setViewMoreOption", () => {
       this.accessor.setViewMoreOption({size:30})
       expect(this.accessor.size).toBe(30)
     })
 
-    it("getMoreSizeOption - view more", () => {
+    test("getMoreSizeOption - view more", () => {
       this.accessor.getCount = () => {
         return 100
       }
       expect(this.accessor.getMoreSizeOption()).toEqual({size:70, label:"View more genres"})
     })
 
-    it("getMoreSizeOption - view all", () => {
+    test("getMoreSizeOption - view all", () => {
       this.accessor.getCount = () => {
         return 30
       }
       expect(this.accessor.getMoreSizeOption()).toEqual({size:30, label:"View all"})
     })
 
-    it("getMoreSizeOption - view all page size equals total", () => {
+    test("getMoreSizeOption - view all page size equals total", () => {
       this.accessor.getCount = () => {
         return 70
       }
       expect(this.accessor.getMoreSizeOption()).toEqual({size:70, label:"View all"})
     })
 
-    it("getMoreSizeOption - view less", () => {
+    test("getMoreSizeOption - view less", () => {
       this.accessor.getCount = () => {
         return 30
       }
@@ -145,7 +145,7 @@ describe("FacetAccessor", ()=> {
       expect(this.accessor.getMoreSizeOption()).toEqual({size:20, label:"View less"})
     })
 
-    it("getMoreSizeOption - no option", () => {
+    test("getMoreSizeOption - no option", () => {
       this.accessor.getCount = () => {
         return 15
       }
@@ -171,7 +171,7 @@ describe("FacetAccessor", ()=> {
       this.query = new ImmutableQuery()
     })
 
-    it("filter test", ()=> {
+    test("filter test", ()=> {
       this.query = this.accessor.buildSharedQuery(this.query)
       let filters = this.query.getFilters().bool.should
       expect(this.toPlainObject(filters)).toEqual([
@@ -196,14 +196,14 @@ describe("FacetAccessor", ()=> {
       expect(this.accessor.state.getValue()).toEqual([])
     })
 
-    it("AND filter", ()=> {
+    test("AND filter", ()=> {
       this.options.operator = "AND"
       this.query = this.accessor.buildSharedQuery(this.query)
       expect(this.query.getFilters().bool.should).toBeFalsy()
       expect(this.query.getFilters().bool.must).toBeTruthy()
     })
 
-    it("Empty state", ()=> {
+    test("Empty state", ()=> {
       this.accessor.state = new ArrayState([])
       let query = this.accessor.buildSharedQuery(this.query)
       expect(query).toBe(this.query)
@@ -223,7 +223,7 @@ describe("FacetAccessor", ()=> {
       this.query = this.accessor.buildSharedQuery(this.query)
     })
 
-    it("build own query - or", ()=> {
+    test("build own query - or", ()=> {
       let query = this.accessor.buildOwnQuery(this.query)
       expect(query.query.aggs).toEqual(
         FilterBucket("genre1",
@@ -236,7 +236,7 @@ describe("FacetAccessor", ()=> {
       )
     })
 
-    it("build own query - and", ()=> {
+    test("build own query - and", ()=> {
       this.options.operator = "AND"
       let query = this.accessor.buildOwnQuery(this.query)
       expect(query.query.aggs).toEqual(
@@ -254,7 +254,7 @@ describe("FacetAccessor", ()=> {
       )
     })
 
-    it("build own query - include/exclude/min_doc_count", ()=> {
+    test("build own query - include/exclude/min_doc_count", ()=> {
       this.options.operator = "AND"
       this.options.include = ["one", "two"]
       this.options.exclude = ["three"]
@@ -305,13 +305,13 @@ describe("FacetAccessor", ()=> {
         }
       })
 
-      it("constructor", ()=> {
+      test("constructor", ()=> {
         expect(this.accessor.fieldContext)
           .toEqual(jasmine.any(NestedFieldContext))
 
       })
 
-      it("buildSharedQuery", ()=> {
+      test("buildSharedQuery", ()=> {
         this.accessor.state = new ArrayState([
           "1", "2"
         ])
@@ -328,7 +328,7 @@ describe("FacetAccessor", ()=> {
 
       })
 
-      it("buildOwnQuery", ()=> {
+      test("buildOwnQuery", ()=> {
         this.accessor.state = new ArrayState([
           "1", "2"
         ])
@@ -346,7 +346,7 @@ describe("FacetAccessor", ()=> {
         )
       })
 
-      it("getBuckets()", ()=> {
+      test("getBuckets()", ()=> {
         expect(this.accessor.getBuckets()).toEqual([1,2])
       })
     })

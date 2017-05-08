@@ -7,7 +7,6 @@ import {SearchkitManager, Utils, ArrayState} from "../../../../core";
 import {Toggle, ItemComponent, ItemList} from "../../../ui";
 const bem = require("bem-cn");
 import * as _ from "lodash"
-import * as sinon from "sinon";
 
 describe("MenuFilter", ()=> {
 

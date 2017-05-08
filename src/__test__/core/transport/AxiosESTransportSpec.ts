@@ -14,17 +14,16 @@ describe("AxiosESTransport", ()=> {
     jasmine.Ajax.uninstall()
   })
 
-  it("constructor()", ()=> {
+  test.only("constructor()", ()=> {
     expect(this.transport.host).toBe(this.host)
     expect(this.transport.options.headers).toEqual({})
     let axiosConfig = this.transport.axios.defaults
     expect(axiosConfig.baseURL).toBe(this.host)
     expect(axiosConfig.timeout).toBe(AxiosESTransport.timeout)
-    expect(axiosConfig.headers).toEqual(axios.defaults.headers)
     expect(this.transport instanceof ESTransport).toBe(true)
   })
 
-  it("constructor() - additional options", ()=> {
+  test("constructor() - additional options", ()=> {
     const transport = new AxiosESTransport(this.host, {
       headers:{
         "Content-Type":"application/json",
@@ -42,7 +41,7 @@ describe("AxiosESTransport", ()=> {
     expect(transport.options.searchUrlPath).toBe("/_search/")
   })
 
-  it("search()", (done)=> {
+  test("search()", (done)=> {
     let mockResults = {hits:[1,2,3]}
     this.host = "http://search:9200/"
     this.transport = new AxiosESTransport(this.host, {
@@ -64,7 +63,7 @@ describe("AxiosESTransport", ()=> {
     })
   })
 
-  it("search - basicAuth", (done)=> {
+  test("search - basicAuth", (done)=> {
     let mockResults = {hits:[1,2,3]}
     this.host = "http://search:9200/"
     this.transport = new AxiosESTransport(this.host, {
@@ -86,7 +85,7 @@ describe("AxiosESTransport", ()=> {
     })
   })
 
-  it("search - withCredentials", (done)=> {
+  test("search - withCredentials", (done)=> {
     document.cookie = axios.defaults.xsrfCookieName + '=12345';
     let mockResults = {hits:[1,2,3]}
     this.host = "http://search:9200/"
@@ -108,7 +107,7 @@ describe("AxiosESTransport", ()=> {
     })
   })
 
-  it("test timeout", ()=> {
+  test("test timeout", ()=> {
     AxiosESTransport.timeout = 10
     this.transport = new AxiosESTransport(this.host)
     expect(this.transport.axios.defaults.timeout)

@@ -9,11 +9,11 @@ describe("SourceFilterAccessor", ()=> {
     this.query = new ImmutableQuery()
   })
 
-  it("constructor()", ()=> {
+  test("constructor()", ()=> {
     expect(this.accessor.source).toEqual(["title.*"])
   })
 
-  it("buildSharedQuery()", ()=> {
+  test("buildSharedQuery()", ()=> {
     let query = this.accessor.buildSharedQuery(this.query)
     expect(query).not.toBe(this.query)
     expect(query.query._source).toEqual(["title.*"])

@@ -104,19 +104,19 @@ export class RangeInput extends React.Component<RangeInputProps, {}> {
     }
 
     return (
-      <form className={bemBlocks.container().mix(className) } onSubmit={this.handleSubmit}>
-        <NumberInput ref="min" className={bemBlocks.container("input") }
+      <form className={bemBlocks.container().mix(className).toString()} onSubmit={this.handleSubmit}>
+        <NumberInput ref="min" className={bemBlocks.container("input").toString()}
                value={minValue}
                field="min"
                onChange={this.handleInputChange}
                placeholder={translate('range.min') || minPlaceholder} />
-        <div className={bemBlocks.container("to-label")}>{translate('range.to') || '-'}</div>
-        <NumberInput ref="max" className={bemBlocks.container("input")}
+        <div className={bemBlocks.container("to-label").toString()}>{translate('range.to') || '-'}</div>
+        <NumberInput ref="max" className={bemBlocks.container("input").toString()}
                value={maxValue}
                field="max"
                onChange={this.handleInputChange}
                placeholder={translate('range.max') || maxPlaceholder } />
-        <button type="submit" className={bemBlocks.container("submit")}>{ translate('range.submit') || 'Go'}</button>
+        <button type="submit" className={bemBlocks.container("submit").toString()}>{ translate('range.submit') || 'Go'}</button>
       </form>
     )
   }

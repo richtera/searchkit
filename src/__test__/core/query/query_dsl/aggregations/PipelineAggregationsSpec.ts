@@ -4,7 +4,7 @@ import {
 
 describe("PipelineAggregations", ()=> {
 
-  it("AvgBucketPipeline", ()=> {
+  test("AvgBucketPipeline", ()=> {
     let aggs = AvgBucketPipeline("avg_prices", "houses>price")
     expect(aggs).toEqual({
       avg_prices:{

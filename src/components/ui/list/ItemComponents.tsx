@@ -20,14 +20,15 @@ function itemRenderer(props: ItemComponentProps) {
   const className = block()
     .state({ active, disabled })
     .mix(bemBlocks.container("item"))
+    .toString()
 
   const hasCount = showCount && (count != undefined) && (count != null)
   return (
     <FastClick handler={onClick}>
       <div className={className} style={style} data-qa="option" data-key={itemKey}>
-        {showCheckbox ? <input type="checkbox" data-qa="checkbox" checked={active} readOnly className={block("checkbox").state({ active }) } ></input> : undefined}
-        <div data-qa="label" className={block("text") }>{label}</div>
-        {hasCount ? < div data-qa="count" className={block("count") }>{count}</div> : undefined}
+        {showCheckbox ? <input type="checkbox" data-qa="checkbox" checked={active} readOnly className={block("checkbox").state({ active }).toString()} ></input> : undefined}
+        <div data-qa="label" className={block("text").toString() }>{label}</div>
+        {hasCount ? < div data-qa="count" className={block("count").toString()}>{count}</div> : undefined}
       </div>
     </FastClick>
   )

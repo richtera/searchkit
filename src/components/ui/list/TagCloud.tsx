@@ -58,7 +58,7 @@ export class TagCloud extends React.Component<TagCloudProps, any> {
     const { min, max } = computeMinMax(items, "doc_count")
 
     return (
-      <div className={bemBlocks.container().mix(className).state({ disabled }) }>
+      <div className={bemBlocks.container().mix(className).state({ disabled }).toString()}>
         {map(sortedItems, (item) => this.renderItem(item, bemBlocks, min, max)) }
       </div>
     )

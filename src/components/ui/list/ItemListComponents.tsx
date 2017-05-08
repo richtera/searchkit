@@ -68,7 +68,7 @@ export class AbstractItemList extends React.Component<ItemListProps, {}> {
       })
     })
     return (
-      <div data-qa="options" className={bemBlocks.container().mix(className).state({ disabled }) }>
+      <div data-qa="options" className={bemBlocks.container().mix(className).state({ disabled }).toString()}>
         {actions}
       </div>
     )

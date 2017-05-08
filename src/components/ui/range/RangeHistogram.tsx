@@ -32,7 +32,7 @@ export class RangeHistogram extends React.Component<any, {}> {
     let bars = map(items, ({key, doc_count}) => {
       const outOfBounds = (key < minValue || key > maxValue)
       return (
-        <div className={bemBlocks.container('bar').state({'out-of-bounds': outOfBounds})}
+        <div className={bemBlocks.container('bar').state({'out-of-bounds': outOfBounds}).toString()}
           key={key}
           style={{
             height: `${(doc_count / maxCount) * 100}%`
@@ -42,7 +42,7 @@ export class RangeHistogram extends React.Component<any, {}> {
     })
 
     return (
-      <div className={bemBlocks.container().mix(className)}>
+      <div className={bemBlocks.container().mix(className).toString()}>
         {bars}
       </div>
     )

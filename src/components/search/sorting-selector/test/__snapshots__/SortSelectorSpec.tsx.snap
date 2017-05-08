@@ -1,0 +1,207 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SortingSelector tests custom mod, className, listComponent 1`] = `
+<div
+  className="my-select custom-class is-disabled"
+  data-qa="options"
+>
+  <div
+    className="my-select-option my-select__item is-active"
+    data-key="none"
+    data-qa="option"
+    onClick={[Function]}
+    onMouseDown={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={undefined}
+  >
+    <div
+      className="my-select-option__text"
+      data-qa="label"
+    >
+      Relevance
+    </div>
+  </div>
+  <div
+    className="my-select-option my-select__item"
+    data-key="released_desc"
+    data-qa="option"
+    onClick={[Function]}
+    onMouseDown={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={undefined}
+  >
+    <div
+      className="my-select-option__text"
+      data-qa="label"
+    >
+      Latest Releases
+    </div>
+  </div>
+  <div
+    className="my-select-option my-select__item"
+    data-key="earliest"
+    data-qa="option"
+    onClick={[Function]}
+    onMouseDown={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={undefined}
+  >
+    <div
+      className="my-select-option__text"
+      data-qa="label"
+    >
+      Earliest Releases
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SortingSelector tests handle prop reload without breaking computed keys 1`] = `
+<div
+  className="sk-select"
+>
+  <select
+    onChange={[Function]}
+    value="none"
+  >
+    <option
+      value="none"
+    >
+      Relevance translated
+    </option>
+    <option
+      value="released_desc"
+    >
+      Latest Releases
+    </option>
+    <option
+      value="earliest"
+    >
+      Earliest Releases
+    </option>
+  </select>
+</div>
+`;
+
+exports[`SortingSelector tests is disabled when no results 1`] = `
+<div
+  className="sk-select is-disabled"
+>
+  <select
+    onChange={[Function]}
+    value="none"
+  >
+    <option
+      disabled={undefined}
+      value="none"
+    >
+      Relevance translated
+    </option>
+    <option
+      disabled={undefined}
+      value="released_desc"
+    >
+      Latest Releases
+    </option>
+    <option
+      disabled={undefined}
+      value="earliest"
+    >
+      Earliest Releases
+    </option>
+  </select>
+</div>
+`;
+
+exports[`SortingSelector tests renders with defaultOption 1`] = `
+<div
+  className="sk-select"
+>
+  <select
+    onChange={[Function]}
+    value="earliest"
+  >
+    <option
+      disabled={undefined}
+      value="none"
+    >
+      Relevance translated
+    </option>
+    <option
+      disabled={undefined}
+      value="released_desc"
+    >
+      Latest Releases
+    </option>
+    <option
+      disabled={undefined}
+      value="earliest"
+    >
+      Earliest Releases
+    </option>
+  </select>
+</div>
+`;
+
+exports[`SortingSelector tests renders with results 1`] = `
+<div
+  className="sk-select"
+>
+  <select
+    onChange={[Function]}
+    value="none"
+  >
+    <option
+      disabled={undefined}
+      value="none"
+    >
+      Relevance translated
+    </option>
+    <option
+      disabled={undefined}
+      value="released_desc"
+    >
+      Latest Releases
+    </option>
+    <option
+      disabled={undefined}
+      value="earliest"
+    >
+      Earliest Releases
+    </option>
+  </select>
+</div>
+`;
+
+exports[`SortingSelector tests renders with selected value 1`] = `
+<div
+  className="sk-select"
+>
+  <select
+    onChange={[Function]}
+    value="released_desc"
+  >
+    <option
+      disabled={undefined}
+      value="none"
+    >
+      Relevance translated
+    </option>
+    <option
+      disabled={undefined}
+      value="released_desc"
+    >
+      Latest Releases
+    </option>
+    <option
+      disabled={undefined}
+      value="earliest"
+    >
+      Earliest Releases
+    </option>
+  </select>
+</div>
+`;

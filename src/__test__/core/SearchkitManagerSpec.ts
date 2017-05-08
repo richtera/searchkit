@@ -4,9 +4,11 @@ import {
   EventEmitter, QueryAccessor, AnonymousAccessor, MockESTransport
 } from "../../"
 
+import { createMemoryHistory } from 'history'
+
 import * as _ from "lodash"
 
-describe("SearchkitManager", ()=> {
+fdescribe("SearchkitManager", ()=> {
 
   beforeEach(()=> {
     this.host = "http://localhost:9200"
@@ -32,7 +34,7 @@ describe("SearchkitManager", ()=> {
   })
 
 
-  it("constructor()", ()=> {
+  test("constructor()", ()=> {
     let semverRegex = /^\d+\.\d+\.\d+-?\w*$/
     expect(this.searchkit.VERSION).toMatch(semverRegex)
     expect(SearchkitManager.VERSION).toMatch(semverRegex)
@@ -66,7 +68,7 @@ describe("SearchkitManager", ()=> {
     expect(this.searchkit.queryProcessor("query")).toBe("query")
   })
 
-  it("SearchkitManager.mock()", ()=> {
+  test("SearchkitManager.mock()", ()=> {
     let searchkit = SearchkitManager.mock()
     expect(searchkit.host).toBe("/")
     expect(searchkit.options.useHistory).toBe(false)
@@ -75,7 +77,7 @@ describe("SearchkitManager", ()=> {
     )
   })
 
-  it("addAccessor(), removeAddAccessor()", ()=> {
+  test("addAccessor(), removeAddAccessor()", ()=> {
     const accessor = new PageSizeAccessor(10)
     this.searchkit.addAccessor(accessor)
     expect(this.searchkit.accessors.accessors).toEqual([
@@ -86,7 +88,7 @@ describe("SearchkitManager", ()=> {
       .toEqual([])
   })
 
-  it("addDefaultQuery()", ()=> {
+  test("addDefaultQuery()", ()=> {
     const queryFn = (query)=> {
       return query.setSize(11)
     }
@@ -95,7 +97,7 @@ describe("SearchkitManager", ()=> {
     expect(this.searchkit.buildQuery().getSize()).toBe(11)
   })
 
-  it("translate()", ()=> {
+  test("translate()", ()=> {
     spyOn(this.searchkit, "translateFunction")
       .and.callThrough()
     expect(this.searchkit.translate("foo")).toBe(undefined)
@@ -103,7 +105,7 @@ describe("SearchkitManager", ()=> {
       .toHaveBeenCalledWith("foo")
   })
 
-  it("buildQuery()", ()=> {
+  test("buildQuery()", ()=> {
     const defaultQueryFn = (query)=> {
       return query.setFrom(20)
     }
@@ -114,15 +116,15 @@ describe("SearchkitManager", ()=> {
     expect(query.getFrom()).toBe(20)
   })
 
-  it("resetState()", ()=> {
+  test("resetState()", ()=> {
     spyOn(this.accessors, "resetState")
     this.searchkit.resetState()
     expect(this.accessors.resetState)
       .toHaveBeenCalled()
   })
 
-  it("listenToHistory()", (done)=> {
-    const history = createHistoryInstance()
+  test.only("listenToHistory()", (done)=> {
+    const history = createHistoryInstance(createMemoryHistory)
     history.push({pathname: window.location.pathname, query:{
       q:"foo"
     }})
@@ -145,8 +147,8 @@ describe("SearchkitManager", ()=> {
     }, 0)
   })
 
-  it("listenToHistory() - searchOnLoad false", (done)=> {
-    const history = createHistoryInstance()
+  test("listenToHistory() - searchOnLoad false", (done)=> {
+    const history = createHistoryInstance(createMemoryHistory)
     history.push({pathname: window.location.pathname, query: {
       q:"foo-previous"
     }})
@@ -170,8 +172,8 @@ describe("SearchkitManager", ()=> {
     },0)
   })
 
-  it("listenToHistory() - handle error", (done)=> {
-    const history = createHistoryInstance()
+  test("listenToHistory() - handle error", (done)=> {
+    const history = createHistoryInstance(createMemoryHistory)
     history.push({pathname: window.location.pathname, query: {
       q:"foo"
     }})
@@ -193,8 +195,8 @@ describe("SearchkitManager", ()=> {
     }, 0)
   })
 
-  it("performSearch()", ()=> {
-    const searchkit = new SearchkitManager("/", {
+  test("performSearch()", ()=> {
+    const searchkit = new SearchkitManager("blank", {
       useHistory:true
     })
     searchkit.setupListeners()
@@ -206,14 +208,14 @@ describe("SearchkitManager", ()=> {
     spyOn(searchkit.history, "push")
     searchkit.performSearch()
     expect(searchkit.history.push).toHaveBeenCalledWith(
-      {pathname:"/context.html", query: {q:"foo"}}
+      {pathname:"blank", query: {q:"foo"}}
     )
     expect(searchkit.accessors.notifyStateChange)
       .toHaveBeenCalledWith(searchkit.state)
     searchkit.unlistenHistory()
   })
 
-  it("run initial search", (done)=> {
+  test("run initial search", (done)=> {
     let searchkit = new SearchkitManager(this.host, {
       useHistory:false, searchOnLoad:false
     })
@@ -235,7 +237,7 @@ describe("SearchkitManager", ()=> {
 
 
 
-  it("performSearch() - same state + replaceState", ()=> {
+  test("performSearch() - same state + replaceState", ()=> {
     const searchkit = new SearchkitManager("/", {
       useHistory:true
     })
@@ -264,14 +266,14 @@ describe("SearchkitManager", ()=> {
       .toHaveBeenCalled()
   })
 
-  it("search()", ()=> {
+  test("search()", ()=> {
     spyOn(this.searchkit, "performSearch")
     this.searchkit.search()
     expect(this.searchkit.performSearch)
       .toHaveBeenCalled()
   })
 
-  it("_search()", ()=> {
+  test("_search()", ()=> {
     spyOn(SearchRequest.prototype, "run")
     this.accessor = new PageSizeAccessor(10)
     this.searchkit.setQueryProcessor((query)=> {
@@ -295,7 +297,7 @@ describe("SearchkitManager", ()=> {
     expect(this.searchkit.loading).toBe(true)
   })
 
-  it("_search() should not search with same query", ()=> {
+  test("_search() should not search with same query", ()=> {
     spyOn(SearchRequest.prototype, "run")
     this.searchkit.query = new ImmutableQuery().setSize(20).setSort([{"created":"desc"}])
     this.searchkit.buildQuery = ()=> new ImmutableQuery().setSize(20).setSort([{"created":"desc"}])
@@ -309,7 +311,7 @@ describe("SearchkitManager", ()=> {
       .toHaveBeenCalled()
   })
 
-  it("reloadSearch()", ()=> {
+  test("reloadSearch()", ()=> {
     spyOn(SearchRequest.prototype, "run")
     this.searchkit.query = new ImmutableQuery().setSize(20).setSort([{"created":"desc"}])
     this.searchkit.buildQuery = ()=> new ImmutableQuery().setSize(20).setSort([{"created":"desc"}])
@@ -321,7 +323,7 @@ describe("SearchkitManager", ()=> {
       .toHaveBeenCalled()
   })
 
-  it("setResults()", ()=> {
+  test("setResults()", ()=> {
     spyOn(this.accessors, "setResults")
     spyOn(this.searchkit, "onResponseChange")
     expect(this.searchkit.results).toBe(undefined)
@@ -338,7 +340,7 @@ describe("SearchkitManager", ()=> {
 
   })
 
-  it("setResults() - error", ()=> {
+  test("setResults() - error", ()=> {
     spyOn(this.searchkit, "onResponseChange")
     spyOn(this.accessors, "setResults")
     spyOn(console, "error")
@@ -354,7 +356,7 @@ describe("SearchkitManager", ()=> {
       .toHaveBeenCalled()
   })
 
-  it("setResults() - change detection", ()=> {
+  test("setResults() - change detection", ()=> {
     spyOn(this.accessors, "setResults")
     spyOn(this.searchkit, "onResponseChange")
     let results = {
@@ -381,7 +383,7 @@ describe("SearchkitManager", ()=> {
 
   })
 
-  it("getHits()", ()=> {
+  test("getHits()", ()=> {
     expect(this.searchkit.getHits()).toEqual([])
     this.searchkit.results = {
       hits:{
@@ -391,7 +393,7 @@ describe("SearchkitManager", ()=> {
     expect(this.searchkit.getHits()).toEqual([1,2,3,4])
   })
 
-  it("getHitsCount(), hasHits()", ()=> {
+  test("getHitsCount(), hasHits()", ()=> {
     expect(this.searchkit.getHitsCount()).toEqual(0)
     expect(this.searchkit.hasHits()).toBe(false)
     this.searchkit.results = {
@@ -405,13 +407,13 @@ describe("SearchkitManager", ()=> {
     expect(this.searchkit.hasHits()).toBe(true)
   })
 
-  it("getQueryAccessor()", ()=> {
+  test("getQueryAccessor()", ()=> {
     let queryAccessor = new QueryAccessor("q")
     this.searchkit.addAccessor(queryAccessor)
     expect(this.searchkit.getQueryAccessor()).toBe(queryAccessor)
   })
 
-  it("getAccessorsByType(), getAccessorByType()", ()=> {
+  test("getAccessorsByType(), getAccessorByType()", ()=> {
     let queryAccessor = new QueryAccessor("q")
     this.searchkit.addAccessor(queryAccessor)
     expect(this.searchkit.getAccessorsByType(QueryAccessor))
@@ -420,7 +422,7 @@ describe("SearchkitManager", ()=> {
       .toEqual(queryAccessor)
   })
 
-  it("onResponseChange()", ()=> {
+  test("onResponseChange()", ()=> {
     this.searchkit.loading = true
     this.searchkit.initialLoading = true
     this.searchkit.onResponseChange()

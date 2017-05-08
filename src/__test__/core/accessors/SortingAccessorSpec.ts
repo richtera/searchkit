@@ -43,7 +43,7 @@ describe("SortingAccessor", ()=> {
 
   })
 
-  it("constructor()", ()=> {
+  test("constructor()", ()=> {
     expect(this.accessor.key).toBe("sort")
     expect(this.accessor.options).toBe(this.options)
     expect(this.options.options).toEqual([
@@ -69,7 +69,7 @@ describe("SortingAccessor", ()=> {
     ])
   })
 
-  it("buildOwnQuery()", ()=> {
+  test("buildOwnQuery()", ()=> {
     this.accessor.state = new ValueState("cheap")
     let query = new ImmutableQuery()
     let priceQuery = this.accessor.buildOwnQuery(query)

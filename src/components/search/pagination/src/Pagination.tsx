@@ -120,7 +120,7 @@ export class Pagination extends SearchkitComponent<PaginationProps, any> {
 
   render() {
     if (!this.hasHits()) return null;
-    const className = bem(this.props.mod).state({numbered:this.props.showNumbers})
+    const className = bem(this.props.mod).state({numbered:this.props.showNumbers}).toString()
 
     const view = renderComponent(this.props.listComponent, {
       items: this.getPages(),

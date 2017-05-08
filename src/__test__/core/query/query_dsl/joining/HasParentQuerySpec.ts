@@ -2,7 +2,7 @@ import {
   HasParentQuery
 } from "../../../../../"
 
-it("HasParentQuery", ()=> {
+test("HasParentQuery", ()=> {
   expect(HasParentQuery("folder", "somequery")).toEqual({
     has_parent:{
       parent_type:"folder",

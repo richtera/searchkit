@@ -5,7 +5,6 @@ import {fastClick, hasClass, jsxToHTML, printPrettyHtml} from "../../../../__tes
 import {SearchkitManager, Utils} from "../../../../../core";
 import {Select} from "../../../../ui";
 const bem = require("bem-cn");
-import * as sinon from "sinon";
 import * as _ from "lodash"
 
 describe("NumericRefinementListFilter tests", () => {
@@ -45,7 +44,7 @@ describe("NumericRefinementListFilter tests", () => {
     }
   })
 
-  it("should set accessor options correctly", ()=> {
+  test("should set accessor options correctly", ()=> {
     this.setWrapper()
     expect(this.accessor.key).toBe("score")
     expect(this.accessor.options).toEqual({
@@ -61,7 +60,7 @@ describe("NumericRefinementListFilter tests", () => {
     })
   })
 
-  it("should render correctly()", ()=> {
+  test("should render correctly()", ()=> {
     this.setWrapper()
     this.setResults()
     expect(this.wrapper.html()).toEqual(jsxToHTML(
@@ -88,7 +87,7 @@ describe("NumericRefinementListFilter tests", () => {
 
   })
 
-  it("should select correctly", ()=> {
+  test("should select correctly", ()=> {
     this.setWrapper()
     this.accessor.state = this.accessor.state.setValue(["21_41"])
     this.setResults()
@@ -96,7 +95,7 @@ describe("NumericRefinementListFilter tests", () => {
     expect(hasClass(lastOption, "is-active")).toBe(true)
   })
 
-  it("should handle clicking an option", () => {
+  test("should handle clicking an option", () => {
     this.setWrapper()
     this.setResults()
     let secondOption = this.getOptionAt(1)
@@ -111,12 +110,12 @@ describe("NumericRefinementListFilter tests", () => {
     expect(this.accessor.state.getValue()).toEqual(['21_41'])
   })
 
-  it("should be disabled for empty buckets", () => {
+  test("should be disabled for empty buckets", () => {
     this.setWrapper()
     expect(this.wrapper.find(".sk-panel.is-disabled").length).toBe(1)
   })
 
-  it("should allow custom mod, className, listComponent, translations", ()=> {
+  test("should allow custom mod, className, listComponent, translations", ()=> {
     this.setWrapper({
       mod:"my-numeric", className:"my-class",
       listComponent:Select, translations:{"All":"Everything"},

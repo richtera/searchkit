@@ -89,10 +89,10 @@ describe("SelectedFilters tests", () => {
   it("overrides", () => {
 
     const FilterItem:React.StatelessComponent<FilterItemProps> = (props)=> (
-      	<div className={props.bemBlocks.option()}>
-    			<div className={props.bemBlocks.option("override-name")}>{props.labelValue}</div>
+      	<div className={props.bemBlocks.option().toString()}>
+    			<div className={props.bemBlocks.option("override-name").toString()}>{props.labelValue}</div>
     			<FastClick handler={props.removeFilter}>
-    				<div className={props.bemBlocks.option("remove-action")}>x</div>
+    				<div className={props.bemBlocks.option("remove-action").toString()}>x</div>
     			</FastClick>
     		</div>
     )

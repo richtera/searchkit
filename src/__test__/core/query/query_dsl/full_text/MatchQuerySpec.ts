@@ -6,12 +6,12 @@ import {
 describe("MatchQuery", ()=> {
 
 
-  it("empty string empty field", ()=> {
+  test("empty string empty field", ()=> {
     expect(MatchQuery("color", null)).toBe(undefined)
     expect(MatchQuery(null, "red")).toBe(undefined)
   })
 
-  it("with string = options", ()=> {    
+  test("with string = options", ()=> {    
     expect(MatchQuery("color", "red yellow", {
       operator:"AND"
     })).toEqual({

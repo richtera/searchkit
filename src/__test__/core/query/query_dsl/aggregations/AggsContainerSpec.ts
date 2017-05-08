@@ -4,7 +4,7 @@ import {
 
 describe("AggsContainer", ()=> {
 
-  it("should create correct aggs structure with children", ()=> {
+  test("should create correct aggs structure with children", ()=> {
 
     let aggs =
       AggsContainer("Grandparent", {name:"GrandParent"}, [

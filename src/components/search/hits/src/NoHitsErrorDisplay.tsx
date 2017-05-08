@@ -18,13 +18,13 @@ export class NoHitsErrorDisplay extends React.Component<NoHitsErrorDisplayProps,
 		const {errorLabel, bemBlocks, resetSearchFn, tryAgainLabel} = this.props
 
     return (
-			<div data-qa="no-hits" className={bemBlocks.container()}>
-				<div className={bemBlocks.container("info")}>
+			<div data-qa="no-hits" className={bemBlocks.container().toString()}>
+				<div className={bemBlocks.container("info").toString()}>
 					{errorLabel}
 				</div>
-				<div className={bemBlocks.container("steps")}>
+				<div className={bemBlocks.container("steps").toString()}>
 					<FastClick handler={resetSearchFn}>
-						<div className={bemBlocks.container("step-action")}>
+						<div className={bemBlocks.container("step-action").toString()}>
 							{tryAgainLabel}
 						</div>
 					</FastClick>

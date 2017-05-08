@@ -26,7 +26,7 @@ describe("NestedFacetAccessor", ()=> {
   })
 
 
-  it("getBuckets()", ()=> {
+  test("getBuckets()", ()=> {
     this.accessor.results = {
       aggregations:{
         "categories": {
@@ -53,7 +53,7 @@ describe("NestedFacetAccessor", ()=> {
       .toEqual([])
   })
 
-  it("getTermAggs()", ()=> {
+  test("getTermAggs()", ()=> {
 
     expect(this.accessor.getTermAggs()).toEqual(
       TermsBucket(
@@ -86,7 +86,7 @@ describe("NestedFacetAccessor", ()=> {
   })
 
 
-  it("buildSharedQuery", ()=> {
+  test("buildSharedQuery", ()=> {
     this.accessor.state = this.accessor.state
       .add(0, "lvl1val")
       .add(1, "lvl2val")
@@ -116,7 +116,7 @@ describe("NestedFacetAccessor", ()=> {
       .toEqual([["lvl1val"], ['lvl2val']])
   })
 
-  it("buildOwnQuery()", ()=> {
+  test("buildOwnQuery()", ()=> {
     this.accessor.state = this.accessor.state
       .add(0, "lvl1val")
       .add(1, "lvl2val")

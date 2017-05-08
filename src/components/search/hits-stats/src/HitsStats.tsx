@@ -22,8 +22,8 @@ export interface HitsStatsDisplayProps {
 const HitsStatsDisplay = (props:HitsStatsDisplayProps) => {
 	const {resultsFoundLabel, bemBlocks} = props
 	return (
-		<div className={bemBlocks.container()} data-qa="hits-stats">
-			<div className={bemBlocks.container("info")} data-qa="info">
+		<div className={bemBlocks.container().toString()} data-qa="hits-stats">
+			<div className={bemBlocks.container("info").toString()} data-qa="info">
 				{resultsFoundLabel}
 			</div>
 	  </div>

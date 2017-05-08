@@ -179,12 +179,12 @@ export class InputFilter extends SearchkitComponent<InputFilterProps, any> {
       className: id ? `filter--${id}` : undefined,
       disabled: (this.searchkit.getHitsCount() == 0) && (this.getAccessorValue() == "")
     },
-      <div className={block().state({focused:this.state.focused})}>
+      <div className={block().state({focused:this.state.focused}).toString()}>
         <form onSubmit={this.onSubmit.bind(this)}>
-          <div className={block("icon")}></div>
+          <div className={block("icon").toString()}></div>
           <input type="text"
             data-qa="input-filter"
-            className={block("text")}
+            className={block("text").toString()}
             placeholder={this.props.placeholder || this.translate("searchbox.placeholder")}
             value={value}
             onFocus={this.setFocusState.bind(this, true)}
@@ -192,10 +192,10 @@ export class InputFilter extends SearchkitComponent<InputFilterProps, any> {
             ref="queryField"
             autoFocus={false}
             onInput={this.onChange.bind(this)}/>
-          <input type="submit" value="search" className={block("action")} data-qa="submit"/>
+          <input type="submit" value="search" className={block("action").toString()} data-qa="submit"/>
           <div data-qa="remove"
                onClick={this.onClear}
-               className={block("remove").state({hidden:value == ""})} />
+               className={block("remove").state({hidden:value == ""}).toString()} />
         </form>
       </div>
     );

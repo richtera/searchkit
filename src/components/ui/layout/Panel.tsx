@@ -61,22 +61,23 @@ export class Panel extends React.Component<PanelProps, {collapsed: boolean}> {
     var containerClass = block()
       .mix(className)
       .state({ disabled })
+      .toString()
 
     var titleDiv
     if (collapsable){
       titleDiv = (
-        <div className={block("header").state({ collapsable, collapsed })} onClick={this.toggleCollapsed.bind(this)}>
+        <div className={block("header").state({ collapsable, collapsed }).toString()} onClick={this.toggleCollapsed.bind(this)}>
           {title}
         </div>
       )
     } else {
-      titleDiv = <div className={block("header") }>{title}</div>
+      titleDiv = <div className={block("header").toString()}>{title}</div>
     }
 
     return (
       <div className={containerClass}>
         {titleDiv}
-        <div className={block("content").state({ collapsed })}>
+        <div className={block("content").state({ collapsed }).toString()}>
           {children}
         </div>
       </div>

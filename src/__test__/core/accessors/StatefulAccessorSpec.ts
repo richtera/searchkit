@@ -18,30 +18,30 @@ describe("StatefulAccessor", ()=> {
     this.searchkit.addAccessor(this.accessor)
   })
 
-  it("constructor()", ()=> {
+  test("constructor()", ()=> {
     expect(this.accessor.uuid).toBe("genres.raw1")
     expect(this.accessor.key).toEqual("genres.raw")
     expect(this.accessor.urlKey).toEqual("genres_raw")
   })
 
-  it("setSearchkitManager()", ()=> {
+  test("setSearchkitManager()", ()=> {
     expect(this.accessor.searchkit).toBe(this.searchkit)
     expect(this.accessor.state).toBe(this.accessor.resultsState)
   })
 
-  it("translate()", ()=> {
+  test("translate()", ()=> {
     this.searchkit.translate = (key)=> {
       return {a:'b'}[key]
     }
     expect(this.accessor.translate("a")).toBe("b")
   })
 
-  it("onStateChange()", ()=> {
+  test("onStateChange()", ()=> {
     expect(()=> this.accessor.onStateChange({}))
       .not.toThrow()
   })
 
-  it("fromQueryObject", ()=> {
+  test("fromQueryObject", ()=> {
     let queryObject = {
       genres_raw:[1,2],
       authors_raw:[3,4]
@@ -51,18 +51,18 @@ describe("StatefulAccessor", ()=> {
       .toEqual([1,2])
   })
 
-  it("getQueryObject()", ()=> {
+  test("getQueryObject()", ()=> {
     this.accessor.state = new ValueState([1,2])
     expect(this.accessor.getQueryObject())
       .toEqual({genres_raw:[1,2]})
   })
 
-  it("getResults()", ()=> {
+  test("getResults()", ()=> {
     this.accessor.results = [1,2]
     expect(this.accessor.getResults()).toEqual([1,2])
   })
 
-  it("getAggregations()", ()=> {
+  test("getAggregations()", ()=> {
     expect(this.accessor.getAggregations(["foo"], 10))
       .toEqual(10)
     this.accessor.results = {
@@ -74,7 +74,7 @@ describe("StatefulAccessor", ()=> {
       .toEqual(11)
   })
 
-  it("setResultsState()", ()=> {
+  test("setResultsState()", ()=> {
     delete this.accessor.resultsState
     expect(this.accessor.state)
       .not.toBe(this.accessor.resultsState)
@@ -83,19 +83,19 @@ describe("StatefulAccessor", ()=> {
       .toBe(this.accessor.resultsState)
   })
 
-  it("resetState()", ()=> {
+  test("resetState()", ()=> {
     this.accessor.state = this.accessor.state.setValue("foo")
     expect(this.accessor.state.getValue()).toBe("foo")
     this.accessor.resetState()
     expect(this.accessor.state.getValue()).toBe(null)
   })
 
-  it("buildSharedQuery", ()=> {
+  test("buildSharedQuery", ()=> {
     let query = new ImmutableQuery()
     expect(this.accessor.buildSharedQuery(query))
       .toBe(query)
   })
-  it("buildOwnQuery", ()=> {
+  test("buildOwnQuery", ()=> {
     let query = new ImmutableQuery()
     expect(this.accessor.buildOwnQuery(query))
       .toBe(query)

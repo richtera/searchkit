@@ -25,7 +25,7 @@ describe("RangeAccessor", ()=> {
     })
   })
 
-  it("getBuckets()", ()=> {
+  test("getBuckets()", ()=> {
     expect(this.accessor.getBuckets()).toEqual([])
     this.accessor.results = {
       aggregations:{
@@ -38,7 +38,7 @@ describe("RangeAccessor", ()=> {
       .toEqual([1,2])
   })
 
-  it("isDisabled() - with histogram", () => {
+  test("isDisabled() - with histogram", () => {
     this.accessor.options.loadHistogram = true
 
     this.accessor.results = {
@@ -61,7 +61,7 @@ describe("RangeAccessor", ()=> {
 
   })
 
-  it("isDisabled() - without histogram", () => {
+  test("isDisabled() - without histogram", () => {
     this.accessor.options.loadHistogram = false
 
     this.accessor.results = {
@@ -86,7 +86,7 @@ describe("RangeAccessor", ()=> {
 
   describe("build query", () => {
 
-    it("buildSharedQuery()", ()=> {
+    test("buildSharedQuery()", ()=> {
       let query = new ImmutableQuery()
       this.accessor.state = new ObjectState({min:20, max:70})
       query = this.accessor.buildSharedQuery(query)
@@ -99,7 +99,7 @@ describe("RangeAccessor", ()=> {
       expect(this.accessor.state.getValue()).toEqual({})
     })
 
-    it("buildSharedQuery() - empty", ()=> {
+    test("buildSharedQuery() - empty", ()=> {
       this.accessor.state = new ObjectState()
       let query = new ImmutableQuery()
       let newQuery = this.accessor.buildSharedQuery(query)
@@ -117,7 +117,7 @@ describe("RangeAccessor", ()=> {
       this.query = this.accessor.buildSharedQuery(this.query)
     })
 
-    it("build own query", ()=> {
+    test("build own query", ()=> {
       let query = this.accessor.buildOwnQuery(this.query)
       expect(query.query.aggs).toEqual(
         FilterBucket("metascore",
@@ -143,7 +143,7 @@ describe("RangeAccessor", ()=> {
       )
     })
 
-    it("build own query loadBuckets:false", ()=> {
+    test("build own query loadBuckets:false", ()=> {
       this.accessor.options.loadHistogram = false
       let query = this.accessor.buildOwnQuery(this.query)
       // expect(query).toBe(this.query)
@@ -185,7 +185,7 @@ describe("RangeAccessor", ()=> {
       })
     })
 
-    it("buildSharedQuery()", ()=> {
+    test("buildSharedQuery()", ()=> {
       let query = new ImmutableQuery()
       this.accessor.state = new ObjectState({min:20, max:70})
       query = this.accessor.buildSharedQuery(query)
@@ -201,7 +201,7 @@ describe("RangeAccessor", ()=> {
       expect(this.accessor.state.getValue()).toEqual({})
     })
 
-    it("build own query", ()=> {
+    test("build own query", ()=> {
       let query = this.accessor.buildOwnQuery(this.query)
       expect(query.query.aggs).toEqual(
         FilterBucket("metascore",
@@ -235,7 +235,7 @@ describe("RangeAccessor", ()=> {
       )
     })
 
-    it("getBuckets()", ()=> {
+    test("getBuckets()", ()=> {
       expect(this.accessor.getBuckets()).toEqual([])
       this.accessor.results = {
         aggregations:{

@@ -120,7 +120,7 @@ export class FacetFilter<T extends FacetFilterProps> extends SearchkitComponent<
 
     return (
       <FastClick handler={() => this.toggleViewMoreOption(option) } key="showMore">
-        <div data-qa="show-more" className={this.bemBlocks.container("view-more-action") }>
+        <div data-qa="show-more" className={this.bemBlocks.container("view-more-action").toString()}>
           {this.translate(option.label) }
         </div>
       </FastClick>

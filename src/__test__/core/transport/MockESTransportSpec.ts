@@ -8,13 +8,13 @@ describe("MockESTransport", ()=> {
     this.transport = new MockESTransport()
   })
 
-  it("contructed correctly", ()=> {
+  test("contructed correctly", ()=> {
     expect(this.transport).toEqual(
       jasmine.any(ESTransport)
     )
   })
 
-  it("search()", (done)=> {
+  test("search()", (done)=> {
     this.transport.search("query").then((returnValue)=> {
       expect(returnValue).toEqual("query")
       done()

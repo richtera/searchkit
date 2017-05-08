@@ -23,10 +23,11 @@ export class FilterItem extends React.Component<FilterItemProps, any> {
 		return (
 			<div className={props.bemBlocks.option()
 				.mix(props.bemBlocks.container("item"))
-				.mix(`selected-filter--${props.filterId}`)()}>
-				<div className={props.bemBlocks.option("name")}>{props.labelKey}: {props.labelValue}</div>
+				.mix(`selected-filter--${props.filterId}`)()
+        .toString()}>
+				<div className={props.bemBlocks.option("name").toString()}>{props.labelKey}: {props.labelValue}</div>
 				<FastClick handler={props.removeFilter}>
-					<div className={props.bemBlocks.option("remove-action")}>x</div>
+					<div className={props.bemBlocks.option("remove-action").toString()}>x</div>
 				</FastClick>
 			</div>
 		)
@@ -100,7 +101,7 @@ export class SelectedFilters extends SearchkitComponent<SelectedFiltersProps, an
 			return null
 		}
     return (
-      <div className={this.bemBlocks.container()}>
+      <div className={this.bemBlocks.container().toString()}>
 				{map(this.getFilters(), this.renderFilter.bind(this))}
       </div>
     )

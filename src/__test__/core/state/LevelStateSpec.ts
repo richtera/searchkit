@@ -12,24 +12,24 @@ describe("LevelState", ()=> {
       .toEqual([["a"], ["b"]])
   })
 
-  it("getValue()", ()=> {
+  test("getValue()", ()=> {
     expect(this.state.getValue()).toEqual(this.initialState)
     expect(this.state.create(null).getValue()).toEqual([])
   })
 
-  it("add()", ()=> {
+  test("add()", ()=> {
     expect(this.state.add(2, "c").getValue())
       .toEqual([["a"],["b"],["c"]])
       expect(this.state.add(1, "c").getValue())
         .toEqual([["a"],["b", "c"]])
   })
 
-  it("contains()", ()=> {
+  test("contains()", ()=> {
     expect(this.state.contains(1,"b")).toEqual(true)
     expect(this.state.contains(1,"c")).toEqual(false)
   })
 
-  it("clear()", ()=> {
+  test("clear()", ()=> {
     const state = this.state.create([['a'],['b'],['c']])
     expect(state.clear().getValue()).toEqual([])
     expect(state.clear(0).getValue()).toEqual([])
@@ -38,7 +38,7 @@ describe("LevelState", ()=> {
     expect(state.clear(3).getValue()).toEqual([['a'],['b'], ['c']])
   })
 
-  it("remove()", ()=> {
+  test("remove()", ()=> {
     const state = new LevelState([
       ['a','b'], ['c', 'd']
     ])
@@ -53,7 +53,7 @@ describe("LevelState", ()=> {
     ])
   })
 
-  it("toggle()", ()=> {
+  test("toggle()", ()=> {
     expect(this.state.toggle(0,'c').getValue()).toEqual([
       ['a','c'], ['b']
     ])
@@ -62,25 +62,25 @@ describe("LevelState", ()=> {
     ])
   })
 
-  it("getLevel()", ()=> {
+  test("getLevel()", ()=> {
     expect(this.state.getLevel(0)).toEqual(['a'])
     expect(this.state.getLevel(1)).toEqual(['b'])
     expect(this.state.getLevel(2)).toEqual([])
 
   })
 
-  it("levelHasFilters()", ()=> {
+  test("levelHasFilters()", ()=> {
     expect(this.state.levelHasFilters(0)).toEqual(true)
     expect(this.state.levelHasFilters(2)).toEqual(false)
   })
 
-  it("isLeafLevel()", ()=> {
+  test("isLeafLevel()", ()=> {
     expect(this.state.isLeafLevel(0)).toEqual(false)
     expect(this.state.isLeafLevel(2)).toEqual(false)
     expect(this.state.isLeafLevel(1)).toEqual(true)
   })
 
-  it("getLeafLevel()", ()=> {
+  test("getLeafLevel()", ()=> {
     expect(this.state.getLeafLevel()).toEqual(1)
     expect(this.state.add(2,'c').getLeafLevel())
       .toEqual(2)
@@ -88,7 +88,7 @@ describe("LevelState", ()=> {
       .toEqual(1)
   })
 
-  it("toggleLevel()", ()=> {
+  test("toggleLevel()", ()=> {
     const state = new LevelState([
       ['a'],['b'], ['c']
     ])

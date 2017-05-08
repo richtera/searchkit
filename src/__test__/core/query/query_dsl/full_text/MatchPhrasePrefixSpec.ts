@@ -6,11 +6,11 @@ import {
 describe("MatchPhrasePrefix", ()=> {
 
 
-  it("empty string", ()=> {
+  test("empty string", ()=> {
     expect(MatchPhrasePrefix("", "title^5")).toBe(undefined)
   })
 
-  it("with string + options", ()=> {
+  test("with string + options", ()=> {
     expect(MatchPhrasePrefix("foo", "title^5")).toEqual({
       match_phrase_prefix:{
         title:{

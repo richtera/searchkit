@@ -4,7 +4,6 @@ import {HierarchicalMenuFilter} from "../src/HierarchicalMenuFilter";
 import {fastClick, hasClass, jsxToHTML, printPrettyHtml} from "../../../../__test__/TestHelpers"
 import {SearchkitManager} from "../../../../../core";
 const bem = require("bem-cn");
-import * as sinon from "sinon";
 import * as _ from "lodash"
 
 describe("MenuFilter tests", () => {
@@ -38,7 +37,7 @@ describe("MenuFilter tests", () => {
     }
   })
 
-  it("should set the correct accessor options", ()=> {
+  test("should set the correct accessor options", ()=> {
     expect(this.accessor.key).toBe("categories")
     expect(this.accessor.options).toEqual({
       id: 'categories', title: 'Categories',
@@ -47,7 +46,7 @@ describe("MenuFilter tests", () => {
     })
   })
 
-  it("should render first level correctly", ()=> {
+  test("should render first level correctly", ()=> {
     this.setResults()
     expect(this.wrapper.html()).toEqual(jsxToHTML(
       <div className="sk-hierarchical-menu-list filter--categories">
@@ -72,7 +71,7 @@ describe("MenuFilter tests", () => {
     ))
   })
 
-  it("should render 2nd level correctly with selected 3rd level", ()=> {
+  test("should render 2nd level correctly with selected 3rd level", ()=> {
     this.accessor.state = this.accessor.state.setValue([
       ["Red"], ["Maroon"]
     ])
@@ -115,7 +114,7 @@ describe("MenuFilter tests", () => {
     ))
   })
 
-  it("should handle selecting an option", ()=> {
+  test("should handle selecting an option", ()=> {
     this.setResults()
     let redOption = this.wrapper.find(".sk-hierarchical-menu-list__hierarchical-options")
       .children().at(0).find(".sk-hierarchical-menu-option")

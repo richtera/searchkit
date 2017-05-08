@@ -6,7 +6,6 @@ import {SearchkitManager, Utils} from "../../../../core";
 
 const bem = require("bem-cn");
 import * as _ from "lodash"
-import * as sinon from "sinon";
 
 describe("TagFilterList tests", () => {
   this.createWrapper = (component) => {

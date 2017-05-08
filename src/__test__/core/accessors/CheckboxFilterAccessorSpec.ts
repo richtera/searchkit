@@ -22,13 +22,13 @@ describe("CheckboxFilterAccessor", ()=> {
     this.accessor = new CheckboxFilterAccessor("movie-filter-key", this.options)
   })
 
-  it("constructor()", ()=> {
+  test("constructor()", ()=> {
     expect(this.accessor.options).toBe(this.options)
     expect(this.accessor.urlKey).toBe("movie-filter")
     expect(this.accessor.key).toBe("movie-filter-key")
   })
 
-  it("getDocCount()", ()=> {
+  test("getDocCount()", ()=> {
     expect(this.accessor.getDocCount()).toEqual(0)
     this.accessor.results = {
       aggregations:{
@@ -41,7 +41,7 @@ describe("CheckboxFilterAccessor", ()=> {
       .toEqual(50)
   })
 
-  it("buildSharedQuery", ()=> {
+  test("buildSharedQuery", ()=> {
     let query = new ImmutableQuery()
     query = this.accessor.buildSharedQuery(query)
     let filters = query.getFilters()
@@ -65,7 +65,7 @@ describe("CheckboxFilterAccessor", ()=> {
     expect(this.accessor.state.getValue()).toEqual(false)
   })
 
-  it("buildOwnQuery", ()=> {
+  test("buildOwnQuery", ()=> {
     let query = new ImmutableQuery()
     query = this.accessor.buildOwnQuery(query)
     expect(query.query.aggs).toEqual(

@@ -30,8 +30,8 @@ export class ResetFiltersDisplay extends React.Component<ResetFiltersDisplayProp
 		return (
 			<div>
 				<FastClick handler={resetFilters}>
-					<div className={bemBlock().state({disabled:!hasFilters})}>
-						<div className={bemBlock("reset")}>{clearAllLabel}</div>
+					<div className={bemBlock.state({disabled:!hasFilters}).toString()}>
+						<div className={bemBlock("reset").toString()}>{clearAllLabel}</div>
 					</div>
 				</FastClick>
 			</div>

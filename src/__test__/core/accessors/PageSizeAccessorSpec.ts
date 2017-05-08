@@ -9,12 +9,12 @@ describe("PageSizeAccessor", ()=> {
     this.query = new ImmutableQuery()
   })
 
-  it("constructor()", ()=> {
+  test("constructor()", ()=> {
     expect(this.accessor.defaultSize).toBe(10)
     expect(this.accessor.state.getValue()).toBe(null)
   })
 
-  it("buildSharedQuery()", ()=> {
+  test("buildSharedQuery()", ()=> {
     let query = this.accessor.buildSharedQuery(this.query)
     expect(query).not.toBe(this.query)
     expect(query.getSize()).toBe(10)
@@ -23,7 +23,7 @@ describe("PageSizeAccessor", ()=> {
     expect(query.getSize()).toBe(20)
   })
 
-  it("setSize()", ()=> {
+  test("setSize()", ()=> {
     this.accessor.setSize(20)
     expect(this.accessor.getSize()).toBe(20)
     expect(this.accessor.state.getValue()).toBe(20)

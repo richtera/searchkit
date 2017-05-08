@@ -12,7 +12,7 @@ describe("SuggestionsAccessor", ()=> {
     this.searchkit.addAccessor(this.accessor)
   })
 
-  it("getSuggestion()", ()=> {
+  test("getSuggestion()", ()=> {
     this.searchkit.setResults({
       "suggest":{
         "suggestions":[
@@ -29,14 +29,14 @@ describe("SuggestionsAccessor", ()=> {
       .toBe("Some Suggestion")
   })
 
-  it("buildOwnQuery() - query too short", ()=> {
+  test("buildOwnQuery() - query too short", ()=> {
     let query = new ImmutableQuery()
     query = query.setQueryString("ab")
     let newQuery = this.accessor.buildOwnQuery(query)
     expect(newQuery).toBe(query)
   })
 
-  it("buildOwnQuery() -  with query ", ()=> {
+  test("buildOwnQuery() -  with query ", ()=> {
     let query = new ImmutableQuery().setQueryString("hello")
     let newQuery = this.accessor.buildOwnQuery(query)
     expect(newQuery).not.toBe(query)

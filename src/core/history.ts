@@ -10,8 +10,8 @@ export const decodeObjString = (str) => {
   return qs.parse(str)
 }
 
-export const createHistoryInstance = function(){
-  return useQueries(createHistory)({
+export const createHistoryInstance = function(createHistoryFn=createHistory){
+  return useQueries(createHistoryFn)({
     stringifyQuery(ob){
       return encodeObjUrl(ob)
     },

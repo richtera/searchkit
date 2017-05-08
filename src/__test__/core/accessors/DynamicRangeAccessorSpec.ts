@@ -21,7 +21,7 @@ describe("DynamicRangeAccessor", ()=> {
     })
   })
 
-  it("getStat()", ()=> {
+  test("getStat()", ()=> {
     this.accessor.results = {
       aggregations:{
         metascore:{
@@ -38,7 +38,7 @@ describe("DynamicRangeAccessor", ()=> {
       .toEqual(0)
   })
 
-  it("isDisabled()", () => {
+  test("isDisabled()", () => {
     this.accessor.results = {
       aggregations:{
         metascore:{
@@ -85,7 +85,7 @@ describe("DynamicRangeAccessor", ()=> {
 
   describe("build query", () => {
 
-    it("buildSharedQuery()", ()=> {
+    test("buildSharedQuery()", ()=> {
       let query = new ImmutableQuery()
       this.accessor.state = new ObjectState({min:20, max:70})
       query = this.accessor.buildSharedQuery(query)
@@ -98,7 +98,7 @@ describe("DynamicRangeAccessor", ()=> {
       expect(this.accessor.state.getValue()).toEqual({})
     })
 
-    it("buildSharedQuery() - empty", ()=> {
+    test("buildSharedQuery() - empty", ()=> {
       this.accessor.state = new ObjectState()
       let query = new ImmutableQuery()
       let newQuery = this.accessor.buildSharedQuery(query)
@@ -116,7 +116,7 @@ describe("DynamicRangeAccessor", ()=> {
       this.query = this.accessor.buildSharedQuery(this.query)
     })
 
-    it("build own query", ()=> {
+    test("build own query", ()=> {
       let query = this.accessor.buildOwnQuery(this.query)
       expect(query.query.aggs).toEqual(
         FilterBucket("metascore",
@@ -144,7 +144,7 @@ describe("DynamicRangeAccessor", ()=> {
       })
     })
 
-    it("getStats()", ()=> {
+    test("getStats()", ()=> {
       this.accessor.results = {
         aggregations:{
           metascore:{
@@ -163,7 +163,7 @@ describe("DynamicRangeAccessor", ()=> {
         .toEqual(0)
     })
 
-    it("buildSharedQuery()", ()=> {
+    test("buildSharedQuery()", ()=> {
       let query = new ImmutableQuery()
       this.accessor.state = new ObjectState({min:20, max:70})
       query = this.accessor.buildSharedQuery(query)
@@ -175,7 +175,7 @@ describe("DynamicRangeAccessor", ()=> {
     })
 
 
-    it("build own query", ()=> {
+    test("build own query", ()=> {
       this.accessor.state = new ObjectState({min:20, max:70})
       this.query = new ImmutableQuery()
       .addFilter("rating_uuid", BoolShould(["PG"]))

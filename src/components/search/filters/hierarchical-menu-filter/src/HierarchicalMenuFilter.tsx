@@ -63,16 +63,18 @@ export class HierarchicalMenuFilter extends SearchkitComponent<HierarchicalMenuF
 
 		var block = this.bemBlocks.option
 		const {countFormatter} = this.props
-		var className = block().state({
-			selected:this.accessor.state.contains(level, option.key)
-		})
+		var className = block()
+			.state({
+				selected:this.accessor.state.contains(level, option.key)
+			})
+			.toString()
 
 		return (
 			<div key={option.key}>
 				<FastClick handler={this.addFilter.bind(this, option,level)}>
 					<div className={className}>
-						<div className={block("text")}>{this.translate(option.key)}</div>
-						<div className={block("count")}>{countFormatter(option.doc_count)}</div>
+						<div className={block("text").toString()}>{this.translate(option.key)}</div>
+						<div className={block("count").toString()}>{countFormatter(option.doc_count)}</div>
 					</div>
 				</FastClick>
 					{(() => {
@@ -87,7 +89,7 @@ export class HierarchicalMenuFilter extends SearchkitComponent<HierarchicalMenuF
 	renderOptions(level) {
 		let block = this.bemBlocks.container;
 		return (
-			<div className={block("hierarchical-options")}>
+			<div className={block("hierarchical-options").toString()}>
 			{map(this.accessor.getBuckets(level), this.renderOption.bind(this,level))}
 			</div>
 		)
@@ -100,10 +102,11 @@ export class HierarchicalMenuFilter extends SearchkitComponent<HierarchicalMenuF
 			.state({
 				disabled: this.accessor.getBuckets(0).length == 0
 			})
+			.toString()
     return (
 			<div className={classname}>
-				<div className={block("header")}>{this.props.title}</div>
-				<div className={block("root")}>
+				<div className={block("header").toString()}>{this.props.title}</div>
+				<div className={block("root").toString()}>
 					{this.renderOptions(0)}
 				</div>
 			</div>

@@ -45,7 +45,7 @@ export class RangeSlider extends React.Component<RangeSliderProps, {}> {
     }
 
     return (
-      <div className={bemBlocks.container().mix(className)}>
+      <div className={bemBlocks.container().mix(className).toString()}>
         <Rcslider
           min={min}
           max={max}

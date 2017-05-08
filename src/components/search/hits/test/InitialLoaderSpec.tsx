@@ -17,7 +17,7 @@ describe("InitialLoader", ()=> {
     )
   })
 
-  it("should render correctly", ()=> {
+  test("should render correctly", ()=> {
     expect(this.wrapper.html()).toEqual(jsxToHTML(
       <div className="sk-initial-loader">
         <div data-qa="initial-loading" className="sk-initial-loader__initial-loading"></div>
@@ -28,7 +28,7 @@ describe("InitialLoader", ()=> {
     expect(this.wrapper.children().length).toBe(0)
   })
 
-  it("should render a custom component", ()=> {
+  test("should render a custom component", ()=> {
     let higherOrderComp = ({bemBlocks})=> (
       <p className={bemBlocks.container("foo")}>Loading</p>
     )

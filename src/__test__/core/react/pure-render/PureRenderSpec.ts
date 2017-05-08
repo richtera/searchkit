@@ -7,7 +7,7 @@ import {
 
 describe("PureRender", ()=> {
 
-  it("should add shouldComponentUpdate", ()=> {
+  test("should add shouldComponentUpdate", ()=> {
     @PureRender
     class MyComponent extends React.Component<any, any>{
 

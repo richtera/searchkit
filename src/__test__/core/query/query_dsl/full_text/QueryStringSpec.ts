@@ -6,11 +6,11 @@ import {
 describe("QueryString", ()=> {
 
 
-  it("empty string", ()=> {
+  test("empty string", ()=> {
     expect(QueryString("")).toBe(undefined)
   })
 
-  it("with string + options", ()=> {
+  test("with string + options", ()=> {
     let qs = QueryString("foo", {
       analyzer:"english",
       fields:["title"],

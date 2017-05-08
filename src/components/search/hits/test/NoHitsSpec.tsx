@@ -6,8 +6,6 @@ import {
   fastClick, hasClass, jsxToHTML, printPrettyHtml
 } from "../../../__test__/TestHelpers"
 
-import * as sinon from "sinon";
-
 describe("NoHits component", () => {
 
   beforeEach(() => {
@@ -35,13 +33,13 @@ describe("NoHits component", () => {
       }
     })
 
-    it("doesn't render on initial load", () => {
+    test("doesn't render on initial load", () => {
       this.searchkit.initialLoading = true
       this.wrapper.update()
       expect(this.hasRendered()).toBeFalsy()
     })
 
-    it("doesn't render on hits", () => {
+    test("doesn't render on hits", () => {
       this.searchkit.initialLoading = false
       this.searchkit.setResults({
         hits:{
@@ -54,13 +52,13 @@ describe("NoHits component", () => {
 
     })
 
-    it("doesn't render on loading", () => {
+    test("doesn't render on loading", () => {
       this.searchkit.isLoading = () => { return true }
       this.wrapper.update()
       expect(this.hasRendered()).toBeFalsy()
     })
 
-    it("renders on no hits", () => {
+    test("renders on no hits", () => {
 
       this.searchkit.setResults({
         hits:{
@@ -78,7 +76,7 @@ describe("NoHits component", () => {
   });
 
   describe("suggestions", () => {
-    it("suggest text", () => {
+    test("suggest text", () => {
       this.createWrapper()
       this.searchkit.query = this.searchkit.query.setQueryString("matrixx")
       this.searchkit.setResults({
@@ -111,7 +109,7 @@ describe("NoHits component", () => {
         .toHaveBeenCalledWith(true)
     })
 
-    it("suggest remove filters", () => {
+    test("suggest remove filters", () => {
       this.createWrapper()
 
       this.searchkit.query = this.searchkit.query.addFilter({}).setQueryString("matrix")
@@ -139,11 +137,13 @@ describe("NoHits component", () => {
       expect(this.searchkit.performSearch).toHaveBeenCalled()
     })
 
-    it("render error", () => {
+    test("render error", () => {
+      console.error = jest.fn()
       this.createWrapper()
       this.searchkit.query = this.searchkit.query.addFilter({}).setQueryString("matrix")
       this.searchkit.setError("simulated error")
       this.wrapper.update()
+      expect(console.error).toBeCalled()
       expect(this.wrapper.html()).toEqual(jsxToHTML(
 <div data-qa="no-hits" className="sk-no-hits">
   <div className="sk-no-hits__info">error</div>

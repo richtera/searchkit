@@ -14,7 +14,7 @@ describe("SearchkitComponent", ()=> {
     this.component.context = {}
   })
 
-  it("SearchkitComponent.translatePropType", ()=> {
+  test("SearchkitComponent.translatePropType", ()=> {
     let translations = {
       continueButton:"Continue",
       cancelButton:"Cancel"
@@ -33,7 +33,7 @@ describe("SearchkitComponent", ()=> {
 
   })
 
-  it("translate()", ()=> {
+  test("translate()", ()=> {
     let searchkit = SearchkitManager.mock()
     searchkit.translateFunction = (key)=> {
       return {"searchkit":"searchkit level"}[key]
@@ -60,7 +60,7 @@ describe("SearchkitComponent", ()=> {
       .toEqual("missing key")
   })
 
-  it("bemBlocks()", ()=> {
+  test("bemBlocks()", ()=> {
     expect(this.component.bemBlocks)
       .toEqual({})
 
@@ -78,7 +78,7 @@ describe("SearchkitComponent", ()=> {
       .toBe("hits__loading")
   })
 
-  it("_getSearchkit()", ()=> {
+  test("_getSearchkit()", ()=> {
     expect(this.component._getSearchkit()).toBe(undefined)
     this.component.context.searchkit ="searchkit_via_context"
 
@@ -90,7 +90,7 @@ describe("SearchkitComponent", ()=> {
       .toBe("searchkit_via_props")
   })
 
-  it("componentWillMount()", ()=> {
+  test("componentWillMount()", ()=> {
     spyOn(this.component, "forceUpdate")
     let searchkit = SearchkitManager.mock()
     let accessor = new Accessor()
@@ -137,39 +137,39 @@ describe("SearchkitComponent", ()=> {
       this.component.searchkit = this.searchkit
     })
 
-    it("getResults()", ()=> {
+    test("getResults()", ()=> {
       expect(this.component.getResults()).toBe(this.results)
     })
 
-    it("getHits()", ()=> {
+    test("getHits()", ()=> {
       expect(this.component.getHits()).toEqual([1,2,3])
     })
 
-    it("getHitsCount()", ()=> {
+    test("getHitsCount()", ()=> {
       expect(this.component.getHitsCount()).toEqual(3)
     })
 
-    it("hasHits()", ()=> {
+    test("hasHits()", ()=> {
       expect(this.component.hasHits()).toBe(true)
     })
 
-    it("hasHitsChanged()", ()=> {
+    test("hasHitsChanged()", ()=> {
       expect(this.component.hasHitsChanged()).toBe(true)
     })
 
-    it("getQuery()", ()=> {
+    test("getQuery()", ()=> {
       expect(this.component.getQuery()).toBe(this.query)
     })
 
-    it("isInitialLoading()", ()=> {
+    test("isInitialLoading()", ()=> {
       expect(this.component.isInitialLoading()).toBe(false)
     })
 
-    it("isLoading()", ()=> {
+    test("isLoading()", ()=> {
       expect(this.component.isLoading()).toBe(false)
     })
 
-    it("getError()", ()=> {
+    test("getError()", ()=> {
       expect(this.component.getError()).toBe(null)
     })
 

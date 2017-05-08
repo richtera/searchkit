@@ -13,26 +13,26 @@ describe("State", ()=> {
     expect(this.state.value).toEqual(1)
   })
 
-  it("getValue()", ()=> {
+  test("getValue()", ()=> {
     expect(this.state.getValue()).toEqual(1)
   })
 
-  it("create()", ()=> {
+  test("create()", ()=> {
     expect(this.state.value).toEqual(1)
     expect(this.state.create(2).value).toEqual(2)
   })
 
-  it("setValue()", ()=> {
+  test("setValue()", ()=> {
     expect(this.state.setValue(2).value).toEqual(2)
   })
 
-  it("hasValue()", ()=> {
+  test("hasValue()", ()=> {
     expect(this.state.hasValue()).toBe(true)
     let state = this.state.clear()
     expect(state.hasValue()).toBe(false)
   })
 
-  it("clear()", ()=> {
+  test("clear()", ()=> {
     expect(this.state.clear().value).toEqual(null)
   })
 })

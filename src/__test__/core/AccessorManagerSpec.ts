@@ -34,7 +34,7 @@ describe("AccessorManager", ()=> {
     this.accessors = this.searchkit.accessors
   })
 
-  it("constructor()", ()=> {
+  test("constructor()", ()=> {
     expect(this.accessors.accessors).toEqual([
       this.accessor1, this.accessor2,
       this.accessor3, this.accessor4,
@@ -44,14 +44,14 @@ describe("AccessorManager", ()=> {
       .toEqual([])
   })
 
-  it("getAccessors()", ()=> {
+  test("getAccessors()", ()=> {
     expect(this.accessors.getAccessors()).toEqual([
       this.accessor1, this.accessor2,
       this.accessor3, this.accessor4, this.accessor5
     ])
   })
 
-  it("getActiveAccessors()", ()=> {
+  test("getActiveAccessors()", ()=> {
     this.accessor2.setActive(false)
     this.accessor3.setActive(false)
     expect(this.accessors.getActiveAccessors()).toEqual([
@@ -59,21 +59,21 @@ describe("AccessorManager", ()=> {
     ])
   })
 
-  it("getStatefulAccessors()", ()=> {
+  test("getStatefulAccessors()", ()=> {
     expect(this.accessors.getStatefulAccessors()).toEqual([
       this.accessor1, this.accessor2,
       this.accessor3, this.accessor4
     ])
   })
 
-  it("getAccessorsByType()", ()=> {
+  test("getAccessorsByType()", ()=> {
     expect(this.accessors.getAccessorsByType(StatelessPageAccessor))
       .toEqual([this.accessor5])
     expect(this.accessors.getAccessorsByType(PaginationAccessor))
       .toEqual([this.accessor1, this.accessor2, this.accessor3, this.accessor4])
   })
 
-  it("getAccessorsByType()", ()=> {
+  test("getAccessorsByType()", ()=> {
     expect(this.accessors.getAccessorByType(StatelessPageAccessor))
       .toEqual(this.accessor5)
     expect(this.accessors.getAccessorByType(PaginationAccessor))
@@ -82,7 +82,7 @@ describe("AccessorManager", ()=> {
       .toEqual(undefined)
   })
 
-  it("add(), remove()", ()=> {
+  test("add(), remove()", ()=> {
     let accessors = new AccessorManager()
     this.accessor1.refCount = 0
     expect(accessors.add(this.accessor1)).toEqual(this.accessor1)
@@ -93,7 +93,7 @@ describe("AccessorManager", ()=> {
     expect(accessors.getAccessors()).toEqual([])
   })
 
-  it("adding accessor with same statefulKey then remove", ()=> {
+  test("adding accessor with same statefulKey then remove", ()=> {
     let accessors = new AccessorManager()
     this.accessor4.refCount = 0
     expect(accessors.add(this.accessor4))
@@ -111,7 +111,7 @@ describe("AccessorManager", ()=> {
     expect(accessors.statefulAccessors).toEqual({})
   })
 
-  it("add() - QueryAccessor and then remove", ()=> {
+  test("add() - QueryAccessor and then remove", ()=> {
     let accessors = new AccessorManager()
     let queryAccessor = new QueryAccessor("q")
     expect(accessors.add(queryAccessor)).toBe(queryAccessor)
@@ -126,12 +126,12 @@ describe("AccessorManager", ()=> {
     expect(accessors.getQueryAccessor()).toBe(noopQueryAccessor)
   })
 
-  it("remove() handle null accessor", ()=> {
+  test("remove() handle null accessor", ()=> {
     let accessors = new AccessorManager()
     expect(()=> { accessors.remove(undefined)}).not.toThrow()
   })
 
-  it("getState()", ()=> {
+  test("getState()", ()=> {
     this.accessor1.state = new ValueState("a1state")
     this.accessor4.state = new ValueState("a4state")
     expect(this.accessors.getState()).toEqual({
@@ -139,7 +139,7 @@ describe("AccessorManager", ()=> {
     })
   })
 
-  it("setState()", ()=> {
+  test("setState()", ()=> {
     this.accessors.setState({
       p2:"a2state", p3:"a3state"})
     expect(this.accessor1.state.getValue()).toBe(null)
@@ -148,7 +148,7 @@ describe("AccessorManager", ()=> {
     expect(this.accessor4.state.getValue()).toBe(null)
   })
 
-  it("notifyStateChange", ()=> {
+  test("notifyStateChange", ()=> {
     let stateChanges = []
     let oldState = {}
     spyOn(PaginationAccessor.prototype, "onStateChange")
@@ -159,7 +159,7 @@ describe("AccessorManager", ()=> {
       .toBe(4)
   })
 
-  it("buildSharedQuery()", ()=> {
+  test("buildSharedQuery()", ()=> {
     let query = new ImmutableQuery()
     let sharedQuery = this.accessors.buildSharedQuery(query)
     this.accessor1.buildSharedQuery = query => query.setSize(25)
@@ -171,7 +171,7 @@ describe("AccessorManager", ()=> {
     expect(newSharedQuery.getSize()).toBe(25)
   })
 
-  it("buildQuery()", ()=> {
+  test("buildQuery()", ()=> {
     spyOn(Accessor.prototype, "beforeBuildQuery")
     expect(this.accessors.buildQuery().getSize())
       .toEqual(50)
@@ -185,14 +185,14 @@ describe("AccessorManager", ()=> {
 
   })
 
-  it("setResults()", ()=> {
+  test("setResults()", ()=> {
     this.accessors.setResults("someResults")
     expect(this.accessor1.results).toBe("someResults")
     expect(this.accessor4.results).toBe("someResults")
   })
 
 
-  it("resetState()", ()=> {
+  test("resetState()", ()=> {
     this.accessor1.state = new ValueState("a1state")
     this.accessor3.state = new ValueState("a3state")
     this.accessors.resetState()

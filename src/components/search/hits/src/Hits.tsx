@@ -35,7 +35,7 @@ export class HitItem extends React.Component<HitItemProps, any> {
 	render(){
 		return (
 			<div data-qa="hit"
-				className={this.props.bemBlocks.item().mix(this.props.bemBlocks.container("item"))}>
+				className={this.props.bemBlocks.item().mix(this.props.bemBlocks.container("item")).toString()}>
 				{this.props.result._id}
 			</div>
 		)
@@ -71,7 +71,7 @@ export class HitsList extends React.Component<HitsListProps, any>{
 			item: block(`${mod}-hit`)
 		}
 		return (
-			<div data-qa="hits" className={bemBlocks.container().mix(className)}>
+			<div data-qa="hits" className={bemBlocks.container().mix(className).toString()}>
 				{map(hits, (result: any, index)=> {
 					return renderComponent(itemComponent, {
 						key:result._id, result, bemBlocks, index
@@ -123,7 +123,7 @@ export class Hits extends SearchkitComponent<HitsProps, any> {
 		}
 		if (this.props.customHighlight) {
 			this.searchkit.addAccessor(new CustomHighlightAccessor(this.props.customHighlight))
-		}		
+		}
 		if(this.props.sourceFilter){
 			this.searchkit.addAccessor(
 				new SourceFilterAccessor(this.props.sourceFilter)

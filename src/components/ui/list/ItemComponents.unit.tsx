@@ -42,7 +42,7 @@ describe("ItemComponents", ()=> {
 
     expect(this.wrapper.html()).toEqual(jsxToHTML(
       <div className="sk-item-option sk-item-container__item" data-qa="option" data-key="images">
-        <input type="checkbox" data-qa="checkbox" readOnly className="sk-item-option__checkbox" value="on"/>
+        <input type="checkbox" data-qa="checkbox" readOnly className="sk-item-option__checkbox"/>
         <div data-qa="label" className="sk-item-option__text">Images</div>
       </div>
     ).replace(/checkbox"\/>/, `checkbox">`))

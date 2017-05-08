@@ -19,13 +19,13 @@ describe("HitsAccessor", ()=> {
     spyOn(document, "querySelector").and.returnValue(this.scroll)
   })
 
-  it("constructor()()", ()=> {
+  test("constructor()()", ()=> {
     expect(this.accessor.options).toEqual({
       scrollTo:"#scrolltome"
     })
   })
 
-  it("setResults()", ()=> {
+  test("setResults()", ()=> {
     this.searchkit.setResults({
       hits:{
         hits:[{_id:1, title:1},{_id:2,title:2}],
@@ -43,7 +43,7 @@ describe("HitsAccessor", ()=> {
     expect(this.scroll.scrollTop).toBe(0)
   })
 
-  it("getScrollSelector()", ()=> {
+  test("getScrollSelector()", ()=> {
     expect(this.accessor.getScrollSelector()).toBe("#scrolltome")
     this.accessor.options.scrollTo = true
     expect(this.accessor.getScrollSelector()).toBe("body")

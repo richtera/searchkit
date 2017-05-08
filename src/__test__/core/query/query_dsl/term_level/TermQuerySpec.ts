@@ -2,7 +2,7 @@ import {
   TermQuery
 } from "../../../../../"
 
-it("TermQuery", ()=> {
+test("TermQuery", ()=> {
   expect(TermQuery("color", "red")).toEqual({
     term:{
       color:"red"

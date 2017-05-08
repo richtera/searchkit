@@ -13,13 +13,13 @@ describe("BaseQueryAccessor", ()=> {
     this.accessor.setSearchkitManager(this.searchkit)
   })
 
-  it("constructor()", ()=> {
+  test("constructor()", ()=> {
     expect(this.accessor.key).toBe("q")
     expect(this.accessor.state.getValue())
       .toBe(null)
   })
 
-  it("keepOnlyQueryState()", ()=> {
+  test("keepOnlyQueryState()", ()=> {
     this.accessor.state = new ValueState("foo")
     spyOn(this.accessor, "setQueryString")
     this.accessor.keepOnlyQueryState()
@@ -27,7 +27,7 @@ describe("BaseQueryAccessor", ()=> {
       .toHaveBeenCalledWith("foo", true)
   })
 
-  it("setQueryString()", ()=> {
+  test("setQueryString()", ()=> {
     spyOn(this.searchkit, "resetState")
     this.accessor.setQueryString("bar")
     expect(this.searchkit.resetState)
@@ -39,12 +39,12 @@ describe("BaseQueryAccessor", ()=> {
     expect(this.accessor.state.getValue()).toBe('barreset')
   })
 
-  it("getQueryString()", ()=> {
+  test("getQueryString()", ()=> {
     this.accessor.state = new ValueState("hi")
     expect(this.accessor.getQueryString()).toBe("hi")
   })
 
-  it("noopQueryAccessor", ()=> {
+  test("noopQueryAccessor", ()=> {
     spyOn(console, "warn")
     noopQueryAccessor.keepOnlyQueryState()
     noopQueryAccessor.setQueryString("foo")

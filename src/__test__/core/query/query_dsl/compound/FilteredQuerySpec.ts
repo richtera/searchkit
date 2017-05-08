@@ -2,7 +2,7 @@ import {
   FilteredQuery
 } from "../../../../../"
 
-it("FilteredQuery", ()=> {
+test("FilteredQuery", ()=> {
   let filtered = {
     filter:{
       term:{color:"red"}

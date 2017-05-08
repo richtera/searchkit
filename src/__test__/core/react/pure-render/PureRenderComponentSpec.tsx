@@ -6,7 +6,7 @@ import {
 
 describe("PureRenderComponent", ()=> {
 
-  it("should inherit shouldPureComponentUpdate", ()=> {
+  test("should inherit shouldPureComponentUpdate", ()=> {
     class MyComponent extends PureRenderComponent<any>{
 
     }

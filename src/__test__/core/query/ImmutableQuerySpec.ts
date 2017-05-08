@@ -45,7 +45,7 @@ describe("ImmutableQuery", ()=> {
     })
   })
 
-  it("hasFilters()", ()=> {
+  test("hasFilters()", ()=> {
     expect(this.query.hasFilters()).toBe(false)
     let query = this.addFilter()
     expect(query.hasFilters()).toBe(true)
@@ -53,7 +53,7 @@ describe("ImmutableQuery", ()=> {
     expect(this.query.hasFilters()).toBe(false)
   })
 
-  it("hasFiltersOrQuery()", ()=> {
+  test("hasFiltersOrQuery()", ()=> {
     expect(this.query.hasFiltersOrQuery()).toBe(false)
     let query = this.addFilter()
     expect(query.hasFiltersOrQuery()).toBe(true)
@@ -63,7 +63,7 @@ describe("ImmutableQuery", ()=> {
       .toBe(true)
   })
 
-  it("addQuery()", ()=> {
+  test("addQuery()", ()=> {
     let query = this.addQuery()
     expect(query.query.query).toEqual(
       SimpleQueryString("foo")
@@ -73,17 +73,17 @@ describe("ImmutableQuery", ()=> {
       .toBe(unchangedQuery)
   })
 
-  it("setQueryString()", ()=> {
+  test("setQueryString()", ()=> {
     let query = this.query.setQueryString("foo")
     expect(query.index.queryString).toBe("foo")
   })
 
-  it("getQueryString()", ()=> {
+  test("getQueryString()", ()=> {
     let query = this.query.setQueryString("foo")
     expect(query.getQueryString()).toBe("foo")
   })
 
-  it("addAnonymousFilter()", ()=> {
+  test("addAnonymousFilter()", ()=> {
     let mockId = "123"
     let spy = spyOn(Utils, "guid").and.returnValue(mockId)
     let filter = BoolShould([1])
@@ -95,7 +95,7 @@ describe("ImmutableQuery", ()=> {
     })
   })
 
-  it("addFilter()", ()=> {
+  test("addFilter()", ()=> {
     let filter = BoolShould([1])
     let query = this.query.addFilter("someKey", filter)
 
@@ -116,18 +116,18 @@ describe("ImmutableQuery", ()=> {
         remove:_.identity
       }
     })
-    it("addSelectedFilter()", ()=> {
+    test("addSelectedFilter()", ()=> {
       let query = this.query.addSelectedFilter(this.filter)
       expect(query.index.selectedFilters).toEqual(
         [this.filter] )
     })
-    it("addSelectedFilters()", ()=> {
+    test("addSelectedFilters()", ()=> {
       let query = this.query.addSelectedFilters([this.filter])
       expect(query.index.selectedFilters).toEqual(
         [this.filter] )
     })
 
-    it("getSelectedFilters()", ()=> {
+    test("getSelectedFilters()", ()=> {
       let query = this.query.addSelectedFilters(
         [this.filter, this.filter])
       expect(query.getSelectedFilters()).toEqual([
@@ -136,7 +136,7 @@ describe("ImmutableQuery", ()=> {
     })
   })
 
-  it("setAggs()", ()=> {
+  test("setAggs()", ()=> {
     let genreAggs = FilterBucket("genre_filter", {},
       TermsBucket("genre_terms", "genre")
     )
@@ -171,7 +171,7 @@ describe("ImmutableQuery", ()=> {
 
   })
 
-  it("getFilters()", ()=> {
+  test("getFilters()", ()=> {
     let aFilter = BoolShould(["a"])
     let bFilter = BoolShould(["b"])
     let cFilter = BoolShould(["c"])
@@ -193,17 +193,17 @@ describe("ImmutableQuery", ()=> {
       .toEqual(BoolMust([bFilter]))
   })
 
-  it("setSize()", ()=> {
+  test("setSize()", ()=> {
     let query = this.query.setSize(10)
     expect(query.getSize()).toEqual(10)
   })
 
-  it("setFrom()", ()=> {
+  test("setFrom()", ()=> {
     let query = this.query.setFrom(10)
     expect(query.getFrom()).toEqual(10)
   })
 
-  it("getPage()", ()=> {
+  test("getPage()", ()=> {
     let query = this.query.setSize(15)
     expect(query.getPage()).toEqual(1)
     query = query.setSize(20)
@@ -215,7 +215,7 @@ describe("ImmutableQuery", ()=> {
     expect(query.getPage()).toEqual(3) // floor(3.5)
   })
 
-  it("setHighlight()", ()=> {
+  test("setHighlight()", ()=> {
     let query = this.query.setHighlight({
       "fields": {
           "title":{},
@@ -239,17 +239,17 @@ describe("ImmutableQuery", ()=> {
 
   })
 
-  it("setSource()", ()=> {
+  test("setSource()", ()=> {
     let query = this.query.setSource(["title", "thumbnail"])
     expect(query.query._source).toEqual(["title", "thumbnail"])
   })
 
-  it("setSuggestions()", ()=> {
+  test("setSuggestions()", ()=> {
     let query = this.query.setSuggestions("suggestions")
     expect(query.query.suggest).toBe("suggestions")
   })
 
-  it("getJSON()", ()=> {
+  test("getJSON()", ()=> {
     let query = this.addFilter()
       .addQuery(SimpleQueryString("Hi"))
     expect(query.getJSON()).toEqual({
@@ -267,7 +267,7 @@ describe("ImmutableQuery", ()=> {
     })
   })
 
-  it("printJSON()", ()=> {
+  test("printJSON()", ()=> {
     spyOn(console, "log")
     this.query.printJSON()
     expect(console.log).toHaveBeenCalledWith(

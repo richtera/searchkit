@@ -1,5 +1,7 @@
 import * as React from "react";
 import {mount} from "enzyme";
+import * as ReactTestRenderer from 'react-test-renderer'
+
 import {
   fastClick, hasClass, jsxToHTML, printPrettyHtml
 } from "../../../components/__test__/TestHelpers"
@@ -13,7 +15,7 @@ import {
 } from "../../../"
 
 
-describe("RenderComponent", ()=> {
+fdescribe("RenderComponent", ()=> {
 
   beforeEach(()=> {
     this.SubPanel = class SubPanel extends Panel {
@@ -55,78 +57,46 @@ describe("RenderComponent", ()=> {
     }
 
     this.mount = (component, props={})=> {
-      this.wrapper = mount(
+      return ReactTestRenderer.create(
         <Provider>
           {renderComponent(
             component, props,
             <p>content..</p>
           )}
         </Provider>
-      )
+      ).toJSON()
     }
 
   })
 
-  it("React.Component class", ()=> {
-    this.mount(this.SubPanel)
-    expect(this.wrapper.html()).toEqual(jsxToHTML(
-      <div className="sk-panel">
-        <div className="sk-panel__header">SubPanel</div>
-        <div className="sk-panel__content">
-          <p>content..</p>
-        </div>
-      </div>
-    ))
+  test("React.Component class", ()=> {
+    expect(this.mount(this.SubPanel)).toMatchSnapshot()
   })
 
-  it("React Element", ()=> {
-    this.mount(this.SubPanelElement)
-    expect(this.wrapper.html()).toEqual(jsxToHTML(
-      <div className="sk-panel">
-        <div className="sk-panel__header">PanelElement</div>
-        <div className="sk-panel__content">
-          <p>content..</p>
-        </div>
-      </div>
-    ))
+  test("React Element", ()=> {
+    expect(this.mount(this.SubPanelElement)).toMatchSnapshot()
   })
 
-  it("React Class", ()=> {
-    this.mount(this.PanelReactClass)
-    expect(this.wrapper.html()).toEqual(jsxToHTML(
-      <div className="sk-panel">
-        <div className="sk-panel__header">PanelReactClass purple</div>
-        <div className="sk-panel__content">
-          <p>content..</p>
-        </div>
-      </div>
-    ))
+  test("React Class", ()=> {
+    expect(this.mount(this.PanelReactClass)).toMatchSnapshot()
   })
 
-  it("Render function", ()=> {
-    this.mount(this.PanelFunction)
-    expect(this.wrapper.html()).toEqual(jsxToHTML(
-      <div className="sk-panel">
-        <div className="sk-panel__header">PanelFunction purple</div>
-        <div className="sk-panel__content">
-          <p>content..</p>
-        </div>
-      </div>
-    ))
+  test("Render function", ()=> {
+    expect(this.mount(this.PanelFunction)).toMatchSnapshot()
   })
 
-  it("Invalid component", ()=> {
-    spyOn(console, "warn")
-    try{
-      this.mount(10)
-      // printPrettyHtml(this.wrapper.html())
-    } catch (e){
-
-    }
-    expect(console.warn).toHaveBeenCalledWith(
-      "Invalid component", 10
-    )
-
-  })
+  // xtest("Invalid component", ()=> {
+  //   spyOn(console, "warn")
+  //   try{
+  //     this.mount(10)
+  //     // printPrettyHtml(this.wrapper.html())
+  //   } catch (e){
+  //
+  //   }
+  //   expect(console.warn).toHaveBeenCalledWith(
+  //     "Invalid component", 10
+  //   )
+  //
+  // })
 
 })

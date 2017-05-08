@@ -156,12 +156,12 @@ export class SearchBox extends SearchkitComponent<SearchBoxProps, any> {
     let block = this.bemBlocks.container
 
     return (
-      <div className={block().state({focused:this.state.focused})}>
+      <div className={block().state({focused:this.state.focused}).toString()}>
         <form onSubmit={this.onSubmit.bind(this)}>
-          <div className={block("icon")}></div>
+          <div className={block("icon").toString()}></div>
           <input type="text"
           data-qa="query"
-          className={block("text")}
+          className={block("text").toString()}
           placeholder={this.props.placeholder || this.translate("searchbox.placeholder")}
           value={this.getValue()}
           onFocus={this.setFocusState.bind(this, true)}
@@ -169,8 +169,8 @@ export class SearchBox extends SearchkitComponent<SearchBoxProps, any> {
           ref="queryField"
           autoFocus={this.props.autofocus}
           onInput={this.onChange.bind(this)}/>
-          <input type="submit" value="search" className={block("action")} data-qa="submit"/>
-          <div data-qa="loader" className={block("loader").mix("sk-spinning-loader").state({hidden:!this.isLoading()})}></div>
+          <input type="submit" value="search" className={block("action").toString()} data-qa="submit"/>
+          <div data-qa="loader" className={block("loader").mix("sk-spinning-loader").state({hidden:!this.isLoading()}).toString()}></div>
         </form>
       </div>
     );

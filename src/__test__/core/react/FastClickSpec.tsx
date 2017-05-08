@@ -18,12 +18,12 @@ describe("FastClick", ()=> {
     )
   })
 
-  it("should render children", ()=> {
+  test("should render children", ()=> {
     expect(this.wrapper.html())
       .toEqual("<button>click me</button>")
   })
 
-  it("test mousedown", ()=> {
+  test("test mousedown", ()=> {
     this.wrapper.simulate("mouseDown", {button:1})
     expect(this.handler).not.toHaveBeenCalled()
 
@@ -49,7 +49,7 @@ describe("FastClick", ()=> {
 
     })
 
-    it("test touch above threshold", ()=> {
+    test("test touch above threshold", ()=> {
       this.simulateTouch("touchEnd", 30, 40)
       expect(this.handler).not.toHaveBeenCalled()
       expect(this.fastClick.startPoint).toBe(undefined)
@@ -60,13 +60,13 @@ describe("FastClick", ()=> {
     })
 
 
-    it("test touch within threshold", ()=> {
+    test("test touch within threshold", ()=> {
       this.simulateTouch("touchEnd", 29, 39)
       expect(this.handler).toHaveBeenCalled()
       expect(this.fastClick.startPoint).toBe(undefined)
     })
 
-    it("ignore multiple touch", ()=> {
+    test("ignore multiple touch", ()=> {
       this.wrapper.simulate("touchStart", {
         changedTouches:[
           {pageX:1,pageY:2},
@@ -76,7 +76,7 @@ describe("FastClick", ()=> {
       expect(this.fastClick.startPoint).toBe(null)
     })
 
-    it("prevents default click behaviour", ()=> {
+    test("prevents default click behaviour", ()=> {
       let event = {
         preventDefault:jasmine.createSpy("preventDefault")
       }

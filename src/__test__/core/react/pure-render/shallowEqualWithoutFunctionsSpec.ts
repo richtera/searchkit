@@ -5,7 +5,7 @@ import {
 describe("shallowEqualWithoutFunctions", ()=> {
 
 
-  it("basics test", ()=> {
+  test("basics test", ()=> {
     let a = {a:1}
     let b = {a:1}
     expect(shallowEqualWithoutFunctions(a,b)).toBe(true)
@@ -14,13 +14,13 @@ describe("shallowEqualWithoutFunctions", ()=> {
     expect(shallowEqualWithoutFunctions(1,"1")).toBe(false)
   })
 
-  it("ignores functions", ()=> {
+  test("ignores functions", ()=> {
     let a = {a:1, fn:()=>{}}
     let b = {a:1, fn:()=>{}}
     expect(shallowEqualWithoutFunctions(a,b)).toBe(true)
   })
 
-  it("doesn't ignore functions", ()=> {
+  test("doesn't ignore functions", ()=> {
     let a = {a:1, itemComponent:()=>{}}
     let b = {a:1, itemComponent:()=>{}}
     expect(shallowEqualWithoutFunctions(a,b)).toBe(false)

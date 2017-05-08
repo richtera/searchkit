@@ -6,8 +6,6 @@ import {
   fastClick, hasClass, jsxToHTML, printPrettyHtml
 } from "../../../../__test__/TestHelpers"
 
-import * as sinon from "sinon";
-
 describe("Reset Filter tests", () => {
 
   beforeEach(() => {
@@ -26,7 +24,7 @@ describe("Reset Filter tests", () => {
 
   });
 
-  it("should create accessor correctly", ()=> {
+  test("should create accessor correctly", ()=> {
     this.createWrapper()
     expect(this.accessor).toBeTruthy()
     expect(this.accessor.options).toBe(this.options)
@@ -48,7 +46,7 @@ describe("Reset Filter tests", () => {
     expect(elem.text()).toBe("reset filters")
   });
 
-  it("handles reset click", () => {
+  test("handles reset click", () => {
     this.searchkit.query.getSelectedFilters = () => {return [1]}
     this.createWrapper()
     spyOn(this.accessor, "performReset")
